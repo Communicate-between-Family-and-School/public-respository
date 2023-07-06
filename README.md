@@ -1,2 +1,2 @@
-git g# public-respository hello world
+# public-respository hello world
 
