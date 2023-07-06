@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="@android:color/transparent" /> <!-- 设置填充颜色为透明 -->
+        <stroke
+            android:width="2dp" /> <!-- 设置边框宽度 -->
+        />
+        <corners android:radius="50dp" /> <!-- 设置圆角半径，这里是50dp，即形成椭圆形状 -->
+    </shape>
+</selector>
