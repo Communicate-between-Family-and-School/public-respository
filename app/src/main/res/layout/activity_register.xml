@@ -7,12 +7,15 @@
     tools:context=".registerActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="551dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,28 +23,174 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/register_uid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="0dp"
+                android:ems="10"
+                android:hint="请在此输入账号（纯数字）"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:maxLength="18"
+                android:visibility="visible" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RadioButton
+                    android:id="@+id/id_loaded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:enabled="false"
+                    android:text="账号允许注册" />
+            </RadioGroup>
+
+            <EditText
                 android:id="@+id/register_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="0dp"
                 android:ems="10"
                 android:hint="请在此输入用户名"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/register_password1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="0dp"
                 android:ems="10"
                 android:hint="请在此输入密码"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/register_password2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="0dp"
+                android:ems="10"
+                android:hint="请在此确认密码"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:visibility="visible" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RadioButton
+                    android:id="@+id/register_pwd_match"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="25dp"
+                    android:enabled="false"
+                    android:text="密码输入合法"
+                    android:textSize="14sp" />
+            </RadioGroup>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/register_childid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="5dp"
+                android:ems="10"
+                android:hint="请在此输入您孩子的编号"
+                android:maxLength="18"
+                android:inputType="number"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/child_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="5dp"
+                android:ems="10"
+                android:hint="请在此输入您孩子的姓名"
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    android:text="请选择您孩子所在的班级"
+                    android:textSize="18sp"
+                    tools:textStyle="normal" />
+
+                <Spinner
+                    android:id="@+id/register_classname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="0dp"
+                    android:minHeight="48dp"
+                    android:spinnerMode="dialog" />
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/register_loaded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="25dp"
+                android:enabled="false"
+                android:text="加载成功"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/register_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注册"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
