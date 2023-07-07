@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".StudentMenuActivity">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="347dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <TextView
+            android:id="@+id/textView_student"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            tools:text="欢迎学生xxx登录" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
