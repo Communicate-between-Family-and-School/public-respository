@@ -39,7 +39,7 @@
             android:name=".StuActivity"
             android:exported="false" />
         <activity
-            android:name=".info"
+            android:name=".infoActivity"
             android:exported="false" />
         <activity
             android:name=".commute"

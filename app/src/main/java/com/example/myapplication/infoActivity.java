@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 /*家长端，学生端和教师端查看教育咨询*/
-public class info extends AppCompatActivity {
+public class infoActivity extends AppCompatActivity {
     Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
