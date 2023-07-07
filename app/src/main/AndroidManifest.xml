@@ -49,16 +49,16 @@
             android:name=".homework"
             android:exported="false" />
         <activity
-            android:name=".PortalActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".StudentMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".registerActivity"
             android:exported="false" />
         <activity
-            android:name=".registerActivity"
+            android:name=".PortalActivity"
             android:exported="true"
             android:label="@string/title_activity_portal"
             android:theme="@style/Theme.MyApplication" >

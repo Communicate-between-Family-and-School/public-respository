@@ -26,12 +26,8 @@ import java.util.ArrayList;
 public class registerActivity extends AppCompatActivity {
     private static ArrayAdapter<String> adapter = null;
     private static long register_uid = 0;//注册账号
-    private static String register_account = "";//注册用户名
-    private static String register_first_password = "";//注册密码
-    private static String register_last_password = "";//确认密码
-
     private static long rchild_id = 0;//孩子编号
-    private static String child_name = "";//孩子姓名
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -68,6 +64,9 @@ public class registerActivity extends AppCompatActivity {
                     break;
                 case 8:
                     Toast.makeText(registerActivity.this, "注册申请提交成功\n请等待审核", Toast.LENGTH_SHORT).show();
+                    break;
+                case 9:
+                    Toast.makeText(registerActivity.this, "注册申请提交失败\n请仔细检查信息", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -166,6 +165,9 @@ public class registerActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final long[] class_id = {0};//存储班级编号
+                final String[] student_name = {""};//学生姓名
+
                 //需要先判断是否变化成空，如果没有判断，程序会崩溃
                 if (apply_id.getText().toString().isEmpty()) {
                     register_uid = 0;
@@ -231,7 +233,7 @@ public class registerActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            String sql = "SELECT u.uname, c.class_name " +
+                            String sql = "SELECT u.uname, c.class_name, c.cid " +
                                     "FROM users u " +
                                     "LEFT JOIN user_role ur ON u.uid = ur.uid " +
                                     "LEFT JOIN role r ON r.rid = ur.rid " +
@@ -254,10 +256,11 @@ public class registerActivity extends AppCompatActivity {
                                 message.what = 7;
                                 if(rowCount == 1){
                                     if (resultSet.next()) {
-                                        String uname = resultSet.getString("u.uname");
-                                        String class_name = resultSet.getString("c.class_name");
+                                        student_name[0] = resultSet.getString("u.uname");//学生名字
+                                        String class_name = resultSet.getString("c.class_name");//班级名称
+                                        class_id[0] = resultSet.getLong("c.cid");//获取班级编号
                                         if(classname.getSelectedItem() != null){
-                                            if(uname.equals(childname.getText().toString()) && class_name.equals(classname.getSelectedItem().toString())){
+                                            if(student_name[0].equals(childname.getText().toString()) && class_name.equals(classname.getSelectedItem().toString())){
                                                 message.what = 6;
                                             }
                                         }
@@ -279,9 +282,34 @@ public class registerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (load1.isChecked() && load2.isChecked() && match.isChecked() && !account.getText().toString().isEmpty()) {
-                            Message message = Message.obtain();
-                            message.what = 8;
-                            handler.sendMessage(message);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String sql = "INSERT INTO `android`.`apply_register` " +
+                                            "VALUES(DEFAULT ,?,?,?,?,?,?)";
+                                    Message message = Message.obtain();
+                                    message.what = 9;
+                                    try {
+                                        Connection connection = DBUtils.getConnection();
+                                        PreparedStatement ps = connection.prepareStatement(sql);
+                                        ps.setLong(1, register_uid);
+                                        ps.setString(2,account.getText().toString());
+                                        ps.setString(3,pwd1.getText().toString());
+                                        ps.setLong(4,rchild_id);
+                                        ps.setString(5,student_name[0]);
+                                        ps.setLong(6,class_id[0]);
+
+                                        int result = DBUtils.Execute(ps,connection);
+                                        if(result > 0)message.what = 8;
+
+                                        DBUtils.CloseConnection(connection);
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                        Log.e("DBUtils", "异常：" + e.getMessage());
+                                    }
+                                    handler.sendMessage(message);
+                                }
+                            }).start();
                         }
                     }
                 }, 2000); // 延迟执行时间为2秒（2000毫秒），可根据需求调整

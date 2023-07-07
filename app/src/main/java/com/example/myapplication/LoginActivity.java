@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Connection;
@@ -120,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(nextMenuIntent);
                             message.what = 1;
                             handler.sendMessage(message);
-                            finish(); // 结束当前登录界面，防止返回到登录界面
+//                            finish(); // 结束当前登录界面，防止返回到登录界面
                         }else{
                             message.what = 2;
                             handler.sendMessage(message);
@@ -131,7 +132,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         register_btn = findViewById(R.id.login_register_btn);
-
+        register_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Register = new Intent(LoginActivity.this,registerActivity.class);
+                startActivity(Register);
+            }
+        });
     }
 }
 

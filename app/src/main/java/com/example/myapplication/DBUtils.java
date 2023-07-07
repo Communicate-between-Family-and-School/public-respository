@@ -64,6 +64,25 @@ public class DBUtils {
         return resultSet;
     }
 
+    public static int Execute(PreparedStatement ps, Connection connection) {
+        int rowCount = 0;
+        try {
+            if (connection != null) {
+                if (ps != null) {
+                    rowCount = ps.executeUpdate();
+                } else {
+                    Log.e("DBUtils", "1.SQL语句错误\n2.连接断开");
+                }
+            } else {
+                Log.e("DBUtils", "数据库连接失败");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.e("DBUtils", "异常：" + e.getMessage());
+        }
+        return rowCount;
+    }
+
     public static HashMap<String, Object> getInfoByName(String name) {
         HashMap<String, Object> map = new HashMap<>();
         // 根据数据库名称，建立连接
