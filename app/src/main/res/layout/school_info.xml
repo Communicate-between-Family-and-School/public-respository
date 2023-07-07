@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -29,7 +30,7 @@
             android:background="@android:color/primary_text_dark_nodisable"
             android:orientation="vertical">
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/notice_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -42,7 +43,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/notice_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -55,7 +56,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/notice_3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -68,7 +69,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/notice_4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -81,7 +82,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/notice_5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -113,7 +114,7 @@
             android:background="@android:color/primary_text_dark_nodisable"
             android:orientation="vertical" >
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/announce_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -126,7 +127,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/announce_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -139,7 +140,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/announce_3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -152,7 +153,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/announce_4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -165,7 +166,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/announce_5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -196,7 +197,7 @@
             android:background="@android:color/primary_text_dark_nodisable"
             android:orientation="vertical">
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/news_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -209,7 +210,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/news_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -222,7 +223,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/news_3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -235,7 +236,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/news_4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -248,7 +249,7 @@
                 android:clickable="true"
                 android:text="" />
 
-            <TextView
+            <com.example.myComponent.MyTextView
                 android:id="@+id/news_5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
