@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+/*学生控制界面*/
 public class StudentMenuActivity extends AppCompatActivity {
     Button back; /*返回按键*/
     Button homework;/*作业界面*/

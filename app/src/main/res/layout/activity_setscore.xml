@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setscore">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="45dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/skyblue"
+                android:gravity="top"
+                android:layout_gravity="center"
+                android:text="&lt;"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="@color/skyblue"
+                android:gravity="center"
+                android:text="成绩     "
+                android:textSize="30dp" />
+        </LinearLayout>
+        <EditText
+            android:id = "@+id/testname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="考试名称"
+            android:textSize="30dp"
+            android:gravity = "center"
+            android:layout_marginBottom="30dp"/>
+        <TextView
+            android:id = "@+id/stuname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="学生姓名"
+            android:textSize="30dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"/>
+        <EditText
+            android:id = "@+id/mark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请按照格式输入学生成绩"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:layout_marginBottom="150dp"/>
+        <Button
+            android:id="@+id/vertify"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="确定"
+            android:textSize="35dp"
+            android:background="@color/coral" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id = "@+id/last"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="上一位"
+                android:textSize="35dp"
+                android:background="@color/forestgreen"/>
+            <Button
+                android:id = "@+id/next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="下一位"
+                android:background="@color/forestgreen"
+                android:textSize="35dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

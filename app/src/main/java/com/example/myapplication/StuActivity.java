@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+/*学生端，家长端，教师端，查看学生活动*/
 public class StuActivity extends AppCompatActivity {
     Button back;
     @Override

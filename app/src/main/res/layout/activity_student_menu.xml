@@ -35,7 +35,7 @@
                 android:layout_weight="6"
                 android:background="@color/skyblue"
                 android:gravity="center"
-                android:text="家校通（家长学生端）"
+                android:text="家校通（家长端）"
                 android:textSize="30dp" />
         </LinearLayout>
         <GridLayout
@@ -58,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_columnWeight="1"
-                android:text="交流"
+                android:text="学生信息"
                 android:textSize="35dp"
                 android:background="@color/brown">
             </Button>

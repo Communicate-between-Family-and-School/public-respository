@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+/*学生端，家长端查看成绩*/
 public class score extends AppCompatActivity {
     Button back;
     @Override
