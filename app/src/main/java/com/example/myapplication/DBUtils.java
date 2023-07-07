@@ -47,7 +47,7 @@ public class DBUtils {
         }
     }
 
-    public static ResultSet Read(PreparedStatement ps, Connection connection) {
+    public static ResultSet Query(PreparedStatement ps, Connection connection) {
         ResultSet resultSet = null;
         try {
             if (connection != null) {// connection不为null表示与数据库建立了连接
