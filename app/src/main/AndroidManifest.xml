@@ -24,6 +24,21 @@
             android:label="@string/title_activity_portal"
             android:theme="@style/Theme.MyApplication" />
         <activity
+            android:name=".score"
+            android:exported="false" />
+        <activity
+            android:name=".StuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".info"
+            android:exported="false" />
+        <activity
+            android:name=".commute"
+            android:exported="false" />
+        <activity
+            android:name=".homework"
+            android:exported="false" />
+        <activity
             android:name=".registerActivity"
             android:exported="false" />
         <activity

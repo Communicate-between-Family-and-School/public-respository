@@ -9,15 +9,86 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_student"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:text="欢迎学生xxx登录" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="75dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/skyblue"
+                android:gravity="top"
+                android:layout_gravity="center"
+                android:text="&lt;"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="@color/skyblue"
+                android:gravity="center"
+                android:text="家校通（家长学生端）"
+                android:textSize="30dp" />
+        </LinearLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_row="2"
+            android:layout_marginBottom="35dp">
+            <Button
+                android:id="@+id/homework"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_columnWeight="1"
+                android:text="作业"
+                android:textSize="35dp"
+                android:background="@color/lightskyblue">
+            </Button>
+            <Button
+                android:id="@+id/commute"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_columnWeight="1"
+                android:text="交流"
+                android:textSize="35dp"
+                android:background="@color/brown">
+            </Button>
+            <Button
+                android:id="@+id/info"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_columnWeight="1"
+                android:text="教育资讯"
+                android:textSize="35dp"
+                android:background="@color/gold">
+            </Button>
+            <Button
+                android:id="@+id/activity"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_columnWeight="1"
+                android:text="学生活动"
+                android:textSize="35dp"
+                android:background="@color/mediumseagreen">
+            </Button>
+        </GridLayout>
+        <Button
+            android:id="@+id/score"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="学生成绩"
+            android:textSize="40dp"
+            android:background="@color/blueviolet">
+
+        </Button>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

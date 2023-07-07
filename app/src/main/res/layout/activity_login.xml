@@ -57,7 +57,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="15dp"
-                android:text="登录" />
+                android:text="登录"
+                android:background="@color/dodgerblue"/>
 
             <Button
                 android:id="@+id/login_register_btn"
@@ -67,7 +68,8 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="注册" />
+                android:text="注册"
+                android:background="@color/dodgerblue"/>
 
         </LinearLayout>
 
