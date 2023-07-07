@@ -26,8 +26,8 @@ public class temp extends AppCompatActivity {
                 case 0x11:
                 case 0x12:
                     String s = (String) msg.obj;
-                        textView3.setText(s);
-                        break;
+                    textView3.setText(s);
+                    break;
             }
         }
     };

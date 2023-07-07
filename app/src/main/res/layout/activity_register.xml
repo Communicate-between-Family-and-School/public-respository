@@ -20,24 +20,28 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextText4"
+                android:id="@+id/register_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                android:text="Name" />
+                android:hint="请在此输入用户名"
+                android:inputType="text" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/register_password1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="请在此输入密码"
                 android:inputType="textPassword" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

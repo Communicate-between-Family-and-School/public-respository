@@ -1,14 +1,21 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.IDENTITY.IdentityType.LEADER;
+import static com.example.myapplication.IDENTITY.IdentityType.PARENT;
+import static com.example.myapplication.IDENTITY.IdentityType.STUDENT;
+import static com.example.myapplication.IDENTITY.IdentityType.TEACHER;
+
 import android.nfc.Tag;
 import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mysql.jdbc.Statement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class DBUtils {
@@ -16,7 +23,7 @@ public class DBUtils {
     //private static String url = "jdbc:mysql://localhost:3306/database";
     private static String user = "root";// 用户名
     private static String password = "uestc2022!";// 密码
-    private static String username = "cs2319.his";//数据库名
+    private static String username = "android";//数据库名
     private static Connection getConnection(){
         Connection connection = null;
         try{
@@ -71,34 +78,83 @@ public class DBUtils {
     }
 
 
-    public static boolean LoginById(String account_text, String password_text, IDENTITY identity) {
-        if(identity.getCurrentIdentity()==IDENTITY.IdentityType.STUDENT){
-            Connection connection = getConnection();
-            try {
-                String sql = "select * from `cs2319.plogin` where Acc = ? and Pwd = ?";
-                if (connection != null){// connection不为null表示与数据库建立了连接
-                    PreparedStatement ps = connection.prepareStatement(sql);
-                    if (ps != null){
-                        ps.setString(1, account_text);
-                        ps.setString(2, password_text);
-                        ResultSet rs = ps.executeQuery();
-                        if (rs != null){
-//                            int rowCount = 0;
-                            if (rs.last()) {
-                                return true;
-//                                rowCount = rs.getRow(); // 获取结果集的当前行数
-//                                rs.beforeFirst(); // 将结果集的指针重置到第一行之前
+    public static IDENTITY LoginById(String account_text, String password_text) {
+        IDENTITY identity = new IDENTITY();
+        Connection connection = getConnection();
+        try {
+            String sql = "SELECT r.rname " +
+                    "FROM users u " +
+                    "JOIN user_role ur ON u.uid = ur.uid " +
+                    "JOIN role r ON ur.rid = r.rid " +
+                    "WHERE u.uid = ? " +
+                    "AND u.password = ?;";
+            if (connection != null){// connection不为null表示与数据库建立了连接
+                PreparedStatement ps = connection.prepareStatement(sql);
+                if (ps != null){
+                    ps.setString(1, account_text);
+                    ps.setString(2, password_text);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs != null){
+                        if (rs.last()) {//int rowCount = 0;rowCount = rs.getRow();// 获取结果集的当前行数 rs.beforeFirst(); // 将结果集的指针重置到第一行之前
+                            String roleName = rs.getString("rname");
+                            if(roleName.equals("student")){
+                                identity.setIdentity(STUDENT);
                             }
-//                            Log.e("DBUtils","行总数：" + rowCount);
-                            ps.close();
-                        }else Log.e("DBUtils","1.查询条件不满足\n2.数据库中无匹配数据\n3.查询语句错误");
-                    }else Log.e("DBUtils","1.SQL语句错误\n2.连接断开");
-                }else Log.e("DBUtils","数据库连接失败");
-            }catch (Exception e){
-                e.printStackTrace();
-                Log.e("DBUtils","异常：" + e.getMessage());
-            }
+                            if(roleName.equals("teacher")){
+                                identity.setIdentity(TEACHER);
+                            }
+                            if(roleName.equals("parent")){
+                                identity.setIdentity(PARENT);
+                            }
+                            if(roleName.equals("leader")){
+                                identity.setIdentity(LEADER);
+                            }
+                        }//Log.e("DBUtils","行总数：" + rowCount);
+                        ps.close();
+                    }else Log.e("DBUtils","1.查询条件不满足\n2.数据库中无匹配数据\n3.查询语句错误");
+                }else Log.e("DBUtils","1.SQL语句错误\n2.连接断开");
+            }else Log.e("DBUtils","数据库连接失败");
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.e("DBUtils","异常：" + e.getMessage());
         }
-        return false;
+        return identity;
+    }
+
+
+    public static ResultSet Read(String sql) {
+
+        Connection connection = getConnection();
+        try {
+            if (connection != null){// connection不为null表示与数据库建立了连接
+                PreparedStatement ps = connection.prepareStatement(sql);
+                if (ps != null){
+                    ResultSet rs = ps.executeQuery();
+                    if (rs != null){
+                        if (rs.last()) {//int rowCount = 0;rowCount = rs.getRow();// 获取结果集的当前行数 rs.beforeFirst(); // 将结果集的指针重置到第一行之前
+                            String roleName = rs.getString("rname");
+                        }
+                        ps.close();
+                    }else Log.e("DBUtils","1.查询条件不满足\n2.数据库中无匹配数据\n3.查询语句错误");
+                }else Log.e("DBUtils","1.SQL语句错误\n2.连接断开");
+            }else Log.e("DBUtils","数据库连接失败");
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.e("DBUtils","异常：" + e.getMessage());
+        }
+
+//        Connection connection = getConnection();
+        ResultSet resultSet = null;
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            resultSet = ps.executeQuery();
+
+            if (resultSet != null)resultSet.close();
+            if (ps != null)ps.close();
+            if (connection != null)connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
     }
 }
