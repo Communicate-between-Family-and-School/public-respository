@@ -19,6 +19,11 @@
             android:name=".TeacherMenuActivity"
             android:exported="false" />
         <activity
+            android:name=".PortalActivity"
+            android:exported="false"
+            android:label="@string/title_activity_portal"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
             android:name=".registerActivity"
             android:exported="false" />
         <activity
