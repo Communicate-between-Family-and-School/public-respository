@@ -19,9 +19,6 @@
             android:name=".TeacherMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".temp"
-            android:exported="false" />
-        <activity
             android:name=".registerActivity"
             android:exported="false" />
         <activity
