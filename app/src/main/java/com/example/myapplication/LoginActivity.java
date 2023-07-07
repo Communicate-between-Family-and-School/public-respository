@@ -74,13 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                                 "JOIN role r ON ur.rid = r.rid " +
                                 "WHERE u.uid = ? " +
                                 "AND u.password = ?;";
+                        Connection connection = null;
                         try {
-                            Connection connection = DBUtils.getConnection();
+                            connection = DBUtils.getConnection();
                             PreparedStatement ps = connection.prepareStatement(sql);
                             if (ps != null) {
                                 ps.setString(1, account_text);
                                 ps.setString(2, password_text);
-                                ResultSet rs = DBUtils.Read(ps,connection);
+                                ResultSet rs = DBUtils.Query(ps,connection);
                                 if (rs != null) {
                                     if (rs.last()) {
                                         switch(rs.getString("rname")){
@@ -97,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (SQLException e) {
                             e.printStackTrace();
                             Log.e("DBUtils", "异常：" + e.getMessage());
+                        } finally {
+                            DBUtils.CloseConnection(connection);
                         }
 
                         Intent nextMenuIntent = null;
