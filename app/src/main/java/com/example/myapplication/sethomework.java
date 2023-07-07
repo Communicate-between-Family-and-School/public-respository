@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class sethomework extends AppCompatActivity {
     Button back;/*返回按钮*/
     TextView prehomework;/*以往作业文本*/
     EditText homework;/*作业内容*/
-    EditText subject;/*作业科目*/
+    Spinner subject;/*作业科目*/
     Button vertify;/*确认按钮*/
+    private final static  String[] array = {"语文","数学","英语"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,9 @@ public class sethomework extends AppCompatActivity {
         prehomework = findViewById(R.id.prehomework);/*登录时获取数据库中之前作业的信息 .setText()*/
 
         subject = findViewById(R.id.subject);/*输入要添加作业的学科*/
+        ArrayAdapter<String> startAdapter = new ArrayAdapter<>(this,R.layout.item_select,array);
+        subject.setAdapter(startAdapter);
+        subject.setSelection(0);
 
         homework = findViewById(R.id.homework);/*输入本次这科作业的内容*/
 
