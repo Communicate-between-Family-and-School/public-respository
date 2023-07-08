@@ -11,7 +11,8 @@ import android.widget.TextView;
 public class TeacherMenuActivity extends AppCompatActivity {
     Button back; /*返回按键*/
     Button sethomework;/*布置作业界面*/
-    Button techcommute;/*教师交流界面*/
+    Button educate;/*教师交流界面*/
+    Button commute;/*家校沟通界面*/
     Button info;/*教育资讯界面*/
     Button activity;/*学生活动界面*/
     Button score;/*成绩界面*/
@@ -20,13 +21,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_menu);
-
-        //获取参数值,登录id
-        Intent intent = getIntent();
-        String account = intent.getStringExtra("account");
-        long account_id = Long.parseLong(account);
-
+        setContentView(R.layout.actvity_teacher_menu);
         txt = findViewById(R.id.textView4);
         txt.setText("家校通（教师端）");
         back = findViewById(R.id.back);
@@ -36,7 +31,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
-        sethomework = findViewById(R.id.homework);
+        sethomework = findViewById(R.id.homework);/*布置作业*/
         sethomework.setText("布置作业");
         sethomework.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -44,33 +39,36 @@ public class TeacherMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(TeacherMenuActivity.this,sethomework.class));
             }
         });
-        techcommute = findViewById(R.id.commute);
-        techcommute.setText("学生评价");
-        techcommute.setOnClickListener(new View.OnClickListener(){
+        educate = findViewById(R.id.educate);/*学生评价*/
+        educate.setText("学生评价");
+        educate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherMenuActivity.this, Educate.class);
-                intent.putExtra("account_id", account_id);
-                startActivity(intent);
+                startActivity(new Intent(TeacherMenuActivity.this,Educate.class));
             }
         });
-        info = findViewById(R.id.info);
+        commute = findViewById(R.id.commute);/*家校沟通*/
+        commute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TeacherMenuActivity.this, communicate.class));
+            }
+        });
+        info = findViewById(R.id.info);/*教育资讯*/
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherMenuActivity.this, commute.class);
-                intent.putExtra("account_id", account_id);
-                startActivity(intent);
+                startActivity(new Intent(TeacherMenuActivity.this, infoActivity.class));
             }
         });
-        activity = findViewById(R.id.activity);
+        activity = findViewById(R.id.activity);/*学生活动*/
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(TeacherMenuActivity.this,StuActivity.class));
             }
         });
-        score = findViewById(R.id.score);
+        score = findViewById(R.id.score);/*发布成绩*/
         score.setText("发布学生成绩");
         score.setOnClickListener(new View.OnClickListener(){
             @Override

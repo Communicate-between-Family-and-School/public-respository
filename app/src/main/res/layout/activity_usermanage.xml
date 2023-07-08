@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Usermanage">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="35dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/skyblue"
+                android:gravity="top"
+                android:layout_gravity="center"
+                android:text="&lt;"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="@color/skyblue"
+                android:gravity="center"
+                android:text="用户管理"
+                android:textSize="30dp" />
+        </LinearLayout>
+        <RadioGroup
+            android:id = "@+id/adm_operate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/adm_insert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text = "添加"
+                    android:textSize="20sp"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/adm_update"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text = "修改"
+                    android:textSize="20sp"
+                    android:layout_weight="1"/>
+                <RadioButton
+                    android:id="@+id/adm_delete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text = "删除"
+                    android:textSize="20sp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/adm_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2">
+                <RadioButton
+                    android:id="@+id/adm_student"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="学生"
+                    android:textSize="20sp"/>
+
+                <RadioButton
+                    android:id="@+id/adm_teacher"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="教师"
+                    android:textSize="20sp"/>
+
+                <RadioButton
+                    android:id="@+id/adm_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="家长"
+                    android:textSize="20sp"/>
+
+                <RadioButton
+                    android:id="@+id/adm_leader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="领导"
+                    android:textSize="20sp"/>
+            </GridLayout>
+    </RadioGroup>
+        <EditText
+            android:id="@+id/adm_editid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "用户ID，若要注册新用户则不输入"
+            android:textSize="20sp"
+            android:layout_marginBottom="20sp"/>
+        <EditText
+            android:id="@+id/adm_editname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "姓名"
+            android:textSize="20sp"
+            android:layout_marginBottom="20sp"/>
+        <EditText
+            android:id="@+id/adm_editpwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "密码"
+            android:textSize="20sp"
+            android:layout_marginBottom="20sp"/>
+        <EditText
+            android:id="@+id/adm_editclass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关联班级,若为领导则不必填写"
+            android:textSize="20sp"
+            android:layout_marginBottom="20sp"/>
+        <Button
+            android:id="@+id/adm_vertify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "确认"
+            android:textSize="20sp"
+            android:background="@color/darkorange"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text = "用户ID:"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/adm_uid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text = "用户名:"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/adm_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text = "关联班级:"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/adm_classnum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text = "用户类型:"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/adm_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

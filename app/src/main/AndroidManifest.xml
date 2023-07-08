@@ -16,6 +16,21 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".search"
+            android:exported="false" />
+        <activity
+            android:name=".messagepublish"
+            android:exported="false" />
+        <activity
+            android:name=".Usermanage"
+            android:exported="false" />
+        <activity
+            android:name=".AdministratorMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".communicate"
+            android:exported="false" />
+        <activity
             android:name=".SchoolInfoActivity"
             android:exported="false" />
         <activity
@@ -25,13 +40,13 @@
             android:name=".sethomework"
             android:exported="false" />
         <activity
-            android:name=".commute"
+            android:name=".Educate"
             android:exported="false" />
         <activity
             android:name=".setscore"
             android:exported="false" />
         <activity
-            android:name=".TeacherMenuActivity"
+            android:name=".commute"
             android:exported="false" />
         <activity
             android:name=".score"
@@ -43,7 +58,7 @@
             android:name=".infoActivity"
             android:exported="false" />
         <activity
-            android:name=".Educate"
+            android:name=".TeacherMenuActivity"
             android:exported="false" />
         <activity
             android:name=".homework"
@@ -58,10 +73,11 @@
             android:name=".registerActivity"
             android:exported="false" />
         <activity
+
             android:name=".PortalActivity"
             android:exported="true"
             android:label="@string/title_activity_portal"
-            android:theme="@style/Theme.MyApplication" >
+            android:theme="@style/Theme.MyApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

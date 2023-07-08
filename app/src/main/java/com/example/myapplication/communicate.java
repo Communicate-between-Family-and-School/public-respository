@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
-
+/*教师端家校沟通*/
 public class communicate extends AppCompatActivity {
     Button back;
     Button send;/*发送按钮*/
