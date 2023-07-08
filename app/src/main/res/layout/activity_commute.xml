@@ -54,21 +54,27 @@
             android:textSize="25dp"
             android:gravity="center"
             android:layout_marginBottom="15dp"/>
+
         <EditText
             android:id="@+id/receive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="收件人id"
+            android:layout_marginBottom="0dp"
+            android:hint="请在此输入收件人账号"
+            android:inputType="number"
             android:textSize="25dp"
-            android:layout_marginBottom="10dp"/>
+            tools:maxLength="18" />
+
         <EditText
             android:id="@+id/conversation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="信息内容"
+            android:layout_height="150dp"
+            android:layout_marginBottom="20dp"
             android:lines="5"
-            android:textSize="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:textSize="20dp" />
         <Button
             android:id="@+id/send"
             android:layout_width="match_parent"

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.mySpecialConversion.ParagraphsIndented;
+
 public class commute extends AppCompatActivity {
     TextView attendance;/*考勤情况*/
     Button back;/*返回按钮*/
@@ -34,6 +36,18 @@ public class commute extends AppCompatActivity {
         refresh = findViewById(R.id.refresh);/*点击刷新按钮再次读取数据库中信息*/
 
         send = findViewById(R.id.send);/*点击发送按钮，读取record和conversation中的信息，将conversation的内容发送到reveive的id中*/
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //规范信件
+                String conversationText = conversation.getText().toString();
+                String indentedText = ParagraphsIndented.indentParagraphs(conversationText, 2);
+                conversation.setText(indentedText);
+
+                // 将缩进后的文本发送给收件人的ID
+                String receiverId = receive.getText().toString();
+            }
+        });
 
         answer = findViewById(R.id.answer);/*显示数据库中的回复信息：answer.setText()*/
 
@@ -44,4 +58,6 @@ public class commute extends AppCompatActivity {
         receive = findViewById(R.id.receive);
         conversation = findViewById(R.id.conversation);
     }
+
+
 }
