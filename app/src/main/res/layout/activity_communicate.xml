@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".communicate">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/skyblue"
+            android:gravity="top"
+            android:layout_gravity="center"
+            android:text="&lt;"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="4"
+            android:background="@color/skyblue"
+            android:gravity="center"
+            android:text="家校沟通"
+            android:textSize="30dp" />
+        <Button
+            android:id="@+id/refresh"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="@color/mediumseagreen"
+            android:gravity="center"
+            android:text="刷新"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/receiveid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="收件人id"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"/>
+    <EditText
+        android:id="@+id/conversation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="信息内容"
+        android:lines="7"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text = "发送"
+        android:textSize="25dp"
+        android:background="@color/darkorange"
+        android:layout_marginBottom="20dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id = "@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "收到信息"
+            android:textSize="20dp"
+            android:lines="13"
+            android:layout_marginBottom="10dp"/>
+    </ScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
