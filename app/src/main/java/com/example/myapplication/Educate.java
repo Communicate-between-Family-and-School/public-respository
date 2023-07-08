@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mySpecialConversion.CustomTextWatcher;
+import com.example.mySpecialConversion.ParagraphsIndented;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -86,7 +87,6 @@ public class Educate extends AppCompatActivity {
 
         Intent intent = getIntent();
         final long[] account_id = {intent.getLongExtra("account_id", 0)};
-        account_id[0] = 2;
 
         stuid = findViewById(R.id.stuid);
         stuid.addTextChangedListener(new CustomTextWatcher(stuid));
@@ -228,12 +228,51 @@ public class Educate extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Sterm_name = "";
             }
         });
 
-
+        comments = findViewById(R.id.comments);//评价控件
         submit = findViewById(R.id.submit);/*提交*/
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //规范信件
+                String conversationText = comments.getText().toString();
+                String indentedText = ParagraphsIndented.indentParagraphs(conversationText, 2);
+                comments.setText(indentedText);
+
+                String sql = "INSERT INTO `evaluate` VALUES(DEFAULT, ?, ?, (SELECT termid FROM term WHERE termname = ?),?)";//评价编号，学生编号，老师编号，学期名称，评价
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Message message = new Message();
+                        message.what = 1;
+                        try {
+                            if(account_id[0] !=0 && stu_id != 0 && Sterm_name != ""){
+                                Connection connection = DBUtils.getConnection();
+                                PreparedStatement ps = connection.prepareStatement(sql);
+                                if (ps != null) {
+                                    ps.setLong(1,stu_id);
+                                    ps.setLong(2, account_id[0]);
+                                    ps.setString(3,Sterm_name);
+                                    ps.setString(4,indentedText);
+
+                                    int rowCount = DBUtils.Execute(ps,connection);
+                                    if(rowCount == 1){
+                                        message.what= 2;
+                                    }
+                                }
+                                DBUtils.CloseConnection(connection);
+                            }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        handler.sendMessage(message);
+                    }
+                }).start();
+            }
+        });
 
         attendance = findViewById(R.id.attendance);
 

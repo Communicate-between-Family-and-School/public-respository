@@ -43,7 +43,7 @@
             android:name=".infoActivity"
             android:exported="false" />
         <activity
-            android:name=".PortalActivity"
+            android:name=".Educate"
             android:exported="false" />
         <activity
             android:name=".homework"
@@ -58,7 +58,7 @@
             android:name=".registerActivity"
             android:exported="false" />
         <activity
-            android:name=".Educate"
+            android:name=".PortalActivity"
             android:exported="true"
             android:label="@string/title_activity_portal"
             android:theme="@style/Theme.MyApplication" >

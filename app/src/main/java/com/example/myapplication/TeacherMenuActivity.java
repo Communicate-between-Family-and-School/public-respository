@@ -21,6 +21,12 @@ public class TeacherMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
+
+        //获取参数值,登录id
+        Intent intent = getIntent();
+        String account = intent.getStringExtra("account");
+        long account_id = Long.parseLong(account);
+
         txt = findViewById(R.id.textView4);
         txt.setText("家校通（教师端）");
         back = findViewById(R.id.back);
@@ -43,14 +49,18 @@ public class TeacherMenuActivity extends AppCompatActivity {
         techcommute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this,Educate.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, Educate.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         info = findViewById(R.id.info);
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this, infoActivity.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, commute.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         activity = findViewById(R.id.activity);
