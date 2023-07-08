@@ -19,6 +19,12 @@ public class StudentMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
+
+        //获取参数值,登录id
+        Intent intent = getIntent();
+        String account = intent.getStringExtra("account");
+        long account_id = Long.parseLong(account);
+
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +43,9 @@ public class StudentMenuActivity extends AppCompatActivity {
         commute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentMenuActivity.this,commute.class));
+                Intent intent = new Intent(StudentMenuActivity.this, commute.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         info = findViewById(R.id.info);

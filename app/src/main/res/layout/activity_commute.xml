@@ -47,7 +47,7 @@
             android:textSize="30dp" />
     </LinearLayout>
         <TextView
-            android:id = "@+id/attendance"
+            android:id = "@+id/attend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text = "考勤情况"
@@ -69,10 +69,11 @@
             android:id="@+id/conversation"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginBottom="20dp"
-            android:lines="5"
+            android:layout_marginBottom="0dp"
             android:gravity="top|start"
+            android:hint="请在此编辑信息"
             android:inputType="textMultiLine"
+            android:lines="5"
             android:scrollbars="vertical"
             android:textSize="20dp" />
         <Button

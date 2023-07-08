@@ -17,6 +17,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.mySpecialConversion.CustomTextWatcher;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,6 +117,10 @@ public class registerActivity extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         EditText child_id = findViewById(R.id.register_childid);
 
+        //自动去掉前缀0
+        apply_id.addTextChangedListener(new CustomTextWatcher(apply_id));
+        child_id.addTextChangedListener(new CustomTextWatcher(child_id));
+
         EditText account = findViewById(R.id.register_account);
         EditText pwd1 = findViewById(R.id.register_password1);
         EditText pwd2 = findViewById(R.id.register_password2);
@@ -123,37 +129,6 @@ public class registerActivity extends AppCompatActivity {
         EditText childname = findViewById(R.id.child_name);
 
         Spinner classname = findViewById(R.id.register_classname);
-
-        class CustomTextWatcher implements TextWatcher {
-            private EditText editText;
-            public CustomTextWatcher(EditText editText) {
-                this.editText = editText;
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // 在文本变化时处理
-                // 自动去除输入整数的前导零
-                String inputText = s.toString();
-                String trimmedText = inputText.replaceFirst("^0+(?!$)", "");
-                if (!inputText.equals(trimmedText)) {
-                    editText.setText(trimmedText);
-                    editText.setSelection(trimmedText.length());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        }
-        apply_id.addTextChangedListener(new CustomTextWatcher(apply_id));
-        child_id.addTextChangedListener(new CustomTextWatcher(child_id));
 
         //注册按钮
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})

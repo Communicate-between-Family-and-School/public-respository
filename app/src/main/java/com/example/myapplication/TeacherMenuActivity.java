@@ -11,8 +11,7 @@ import android.widget.TextView;
 public class TeacherMenuActivity extends AppCompatActivity {
     Button back; /*返回按键*/
     Button sethomework;/*布置作业界面*/
-    Button educate;/*教师交流界面*/
-    Button commute;/*家校沟通界面*/
+    Button techcommute;/*教师交流界面*/
     Button info;/*教育资讯界面*/
     Button activity;/*学生活动界面*/
     Button score;/*成绩界面*/
@@ -21,7 +20,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actvity_teacher_menu);
+        setContentView(R.layout.activity_student_menu);
         txt = findViewById(R.id.textView4);
         txt.setText("家校通（教师端）");
         back = findViewById(R.id.back);
@@ -39,19 +38,12 @@ public class TeacherMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(TeacherMenuActivity.this,sethomework.class));
             }
         });
-        educate = findViewById(R.id.educate);
-        educate.setText("学生评价");
-        educate.setOnClickListener(new View.OnClickListener(){
+        techcommute = findViewById(R.id.commute);
+        techcommute.setText("学生评价");
+        techcommute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(TeacherMenuActivity.this,Educate.class));
-            }
-        });
-        commute = findViewById(R.id.commute);
-        commute.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this, communicate.class));
             }
         });
         info = findViewById(R.id.info);

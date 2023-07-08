@@ -16,9 +16,6 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".communicate"
-            android:exported="false" />
-        <activity
             android:name=".SchoolInfoActivity"
             android:exported="false" />
         <activity
@@ -28,13 +25,13 @@
             android:name=".sethomework"
             android:exported="false" />
         <activity
-            android:name=".Educate"
+            android:name=".commute"
             android:exported="false" />
         <activity
             android:name=".setscore"
             android:exported="false" />
         <activity
-            android:name=".commute"
+            android:name=".TeacherMenuActivity"
             android:exported="false" />
         <activity
             android:name=".score"
@@ -61,10 +58,10 @@
             android:name=".registerActivity"
             android:exported="false" />
         <activity
-            android:name=".TeacherMenuActivity"
+            android:name=".Educate"
             android:exported="true"
             android:label="@string/title_activity_portal"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
