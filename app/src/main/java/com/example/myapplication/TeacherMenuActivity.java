@@ -22,8 +22,11 @@ public class TeacherMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actvity_teacher_menu);
-        txt = findViewById(R.id.textView4);
-        txt.setText("家校通（教师端）");
+
+        Intent intent = getIntent();
+        String account = intent.getStringExtra("account");
+        long account_id = Long.parseLong(account);
+
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +39,9 @@ public class TeacherMenuActivity extends AppCompatActivity {
         sethomework.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this,sethomework.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, sethomework.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         educate = findViewById(R.id.educate);/*学生评价*/
@@ -44,28 +49,36 @@ public class TeacherMenuActivity extends AppCompatActivity {
         educate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this,Educate.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, Educate.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         commute = findViewById(R.id.commute);/*家校沟通*/
         commute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this, communicate.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, communicate.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         info = findViewById(R.id.info);/*教育资讯*/
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this, infoActivity.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, infoActivity.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         activity = findViewById(R.id.activity);/*学生活动*/
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this,StuActivity.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, StuActivity.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         score = findViewById(R.id.score);/*发布成绩*/
@@ -73,7 +86,9 @@ public class TeacherMenuActivity extends AppCompatActivity {
         score.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(TeacherMenuActivity.this,setscore.class));
+                Intent intent = new Intent(TeacherMenuActivity.this, setscore.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
     }

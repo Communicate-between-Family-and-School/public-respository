@@ -36,7 +36,9 @@ public class StudentMenuActivity extends AppCompatActivity {
         homework.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentMenuActivity.this,homework.class));
+                Intent intent = new Intent(StudentMenuActivity.this, homework.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         commute = findViewById(R.id.commute);
@@ -52,21 +54,27 @@ public class StudentMenuActivity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentMenuActivity.this, infoActivity.class));
+                Intent intent = new Intent(StudentMenuActivity.this, infoActivity.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         activity = findViewById(R.id.activity);
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentMenuActivity.this,StuActivity.class));
+                Intent intent = new Intent(StudentMenuActivity.this, StuActivity.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
         score = findViewById(R.id.score);
         score.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentMenuActivity.this,score.class));
+                Intent intent = new Intent(StudentMenuActivity.this, score.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
             }
         });
     }
