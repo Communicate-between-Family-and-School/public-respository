@@ -14,6 +14,8 @@ public class AdministratorMenuActivity extends AppCompatActivity {
     Button communicate;/*家校沟通*/
     Button message;/*信息发布界面*/
     Button search;/*用户信息查询*/
+    Button info;/*教育资讯界面*/
+    Button activity;/*学生活动界面*/
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,21 @@ public class AdministratorMenuActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         search = findViewById(R.id.search);
         communicate = findViewById(R.id.communicate);
+        info = findViewById(R.id.info);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdministratorMenuActivity.this,infoActivity.class));
+            }
+        });
+        activity = findViewById(R.id.activity);
+        activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdministratorMenuActivity.this, StuActivity.class);
+                startActivity(intent);
+            }
+        });
         communicate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
