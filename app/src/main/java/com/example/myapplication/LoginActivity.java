@@ -30,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     Button login_btn,register_btn;//登录按钮，注册按钮
 
     private static final String Tag = "LoginActivity";
-    private static String account_text = "",password_text = "";
+    private static long account_text = 0;
+    private static String password_text = "";
     private static IDENTITY identity = new IDENTITY(NO_IDENTITY);
 
     @SuppressLint("HandlerLeak")
@@ -65,8 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        account_text = account.getText().toString();
+                        account_text = Integer.parseInt(account.getText().toString());
+                        Log.d(Tag, account.getText().toString());
                         password_text = password.getText().toString();
+                        Log.d(Tag, password_text);
                         Message message = new Message();
 
                         String sql = "SELECT r.rname " +
@@ -80,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                             connection = DBUtils.getConnection();
                             PreparedStatement ps = connection.prepareStatement(sql);
                             if (ps != null) {
-                                ps.setString(1, account_text);
+                                ps.setLong(1, account_text);
                                 ps.setString(2, password_text);
                                 ResultSet rs = DBUtils.Query(ps,connection);
                                 if (rs != null) {
@@ -91,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                                             case "parent":identity.setIdentity(PARENT);break;
                                             case "leader":identity.setIdentity(LEADER);break;
                                         }
+                                    }else {
+                                        identity.setIdentity(NO_IDENTITY);
                                     }
                                     else{
                                         identity.setIdentity(NO_IDENTITY);
