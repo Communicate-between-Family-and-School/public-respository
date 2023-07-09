@@ -64,9 +64,6 @@
             android:name=".StuActivity"
             android:exported="false" />
         <activity
-            android:name=".infoActivity"
-            android:exported="false" />
-        <activity
             android:name=".TeacherMenuActivity"
             android:exported="false" />
         <activity

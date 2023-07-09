@@ -22,8 +22,7 @@ public class StudentMenuActivity extends AppCompatActivity {
 
         //获取参数值,登录id
         Intent intent = getIntent();
-        String account = intent.getStringExtra("account");
-        long account_id = Long.parseLong(account);
+        long account_id = intent.getLongExtra("account", -1);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +53,9 @@ public class StudentMenuActivity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, infoActivity.class);
+                Intent intent = new Intent(StudentMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
+                intent.putExtra("type", 3);
                 startActivity(intent);
             }
         });
@@ -63,8 +63,9 @@ public class StudentMenuActivity extends AppCompatActivity {
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, StuActivity.class);
+                Intent intent = new Intent(StudentMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
+                intent.putExtra("type", 4);
                 startActivity(intent);
             }
         });

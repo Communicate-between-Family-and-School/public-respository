@@ -41,25 +41,28 @@ public class ArticleDisplayActivity extends AppCompatActivity {
             Connection connection = null;
             try {
                 connection = DBUtils.getConnection();
-                // 学校信息查询，type=0：通知，type=1；公告，type=2：新闻
+                // 学校信息查询，type=0：通知，type=1；公告，type=2：新闻，type=3：教育资讯
                 String sql = "";
                 if (type == 0){
                     sql = "SELECT notice FROM school_notice where snid=?;";
                 } else if (type == 1) {
                     sql = "SELECT announce FROM school_announce where said=?;";
-                }else {
+                }else if(type == 2) {
                     sql = "SELECT news FROM school_news where snid=?;";
+                }else if(type == 3){
+                    sql = "SELECT mcontent FROM edu_message where mid=?;";
+                }else if(type == 4){
+                    sql = "SELECT satext FROM stu_activity where said=?;";
                 }
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {
                     ps.setInt(1, id);
                     ResultSet rs = DBUtils.Query(ps, connection);
                     if (rs != null) {
-                        int i = 0;
                         if (rs.next()) {
-                            String notice = rs.getString(1);
+                            String article = rs.getString(1);
                             Message message = new Message();
-                            message.obj = notice;
+                            message.obj = article;
                             handler.sendMessage(message);
                         }
                     }

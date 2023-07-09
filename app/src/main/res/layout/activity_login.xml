@@ -27,7 +27,8 @@
             android:ems="10"
             android:hint="请在此输入账号"
             android:inputType="text"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:inputType="number" />
 
         <EditText
             android:id="@+id/login_password"

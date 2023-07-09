@@ -56,7 +56,7 @@ public class MoreInfoActivity extends AppCompatActivity {
         infoType = (TextView) findViewById(R.id.infoType);
         titles = (LinearLayout) findViewById(R.id.titles);
         int type = bundle.getInt("type");
-        // type=0：更多通知，type=1：更多公告，type=2：更多新闻
+        // type=0：更多通知，type=1：更多公告，type=2：更多新闻, type=3：教育资讯, type=4：学生活动
         new Thread(() -> {
             Connection connection = null;
             try {
@@ -68,9 +68,15 @@ public class MoreInfoActivity extends AppCompatActivity {
                 }else if (type == 1){
                     sql = "SELECT title, said FROM school_announce ORDER BY said DESC";
                     infoType.setText("公告");
-                }else {
+                }else if (type == 2) {
                     sql = "SELECT title, snid FROM school_news ORDER BY snid DESC";
                     infoType.setText("新闻");
+                }else if (type == 3){
+                    sql = "SELECT mtitle, mid FROM edu_message ORDER BY mid DESC";
+                    infoType.setText("教育资讯");
+                }else if (type == 4){
+                    sql = "SELECT satitle, said FROM stu_activity ORDER BY said DESC";
+                    infoType.setText("学生活动");
                 }
                 PreparedStatement ps = connection.prepareStatement(sql);
                 if (ps != null) {

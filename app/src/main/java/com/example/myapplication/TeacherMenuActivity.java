@@ -24,8 +24,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
         setContentView(R.layout.actvity_teacher_menu);
 
         Intent intent = getIntent();
-        String account = intent.getStringExtra("account");
-        long account_id = Long.parseLong(account);
+        long account_id = intent.getLongExtra("account", -1);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +66,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherMenuActivity.this, infoActivity.class);
+                Intent intent = new Intent(TeacherMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }
