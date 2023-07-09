@@ -15,7 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="30dp">
+                android:layout_marginBottom="20dp">
 
                 <Button
                     android:id="@+id/back"
@@ -40,10 +40,10 @@
             </LinearLayout>
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="500dp"
                 android:columnCount="2"
                 android:layout_row="3"
-                android:layout_marginBottom="35dp">
+                android:layout_marginBottom="20sp">
                 <Button
                     android:id="@+id/homework"
                     android:layout_width="0dp"
@@ -107,6 +107,13 @@
                     android:background="@color/mediumseagreen">
                 </Button>
             </GridLayout>
+            <Button
+                android:id="@+id/audit"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="审核家长申请"
+                android:textSize="30dp"
+                android:background="@color/darkkhaki"/>
         </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
     Button info;/*教育资讯界面*/
     Button activity;/*学生活动界面*/
     Button score;/*成绩界面*/
-    TextView txt;
+    Button audit;/*审核家长申请界面*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +88,15 @@ public class TeacherMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TeacherMenuActivity.this, setscore.class);
                 intent.putExtra("account_id", account_id);
+                startActivity(intent);
+            }
+        });
+        audit = findViewById(R.id.audit);
+        audit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TeacherMenuActivity.this,com.example.myapplication.audit.class);
+                intent.putExtra("account_id",account_id);
                 startActivity(intent);
             }
         });

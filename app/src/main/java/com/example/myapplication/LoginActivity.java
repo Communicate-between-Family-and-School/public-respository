@@ -112,8 +112,10 @@ public class LoginActivity extends AppCompatActivity {
                                 nextMenuIntent = new Intent(LoginActivity.this, TeacherMenuActivity.class);
                                 break;
                             case PARENT:
+                                nextMenuIntent = new Intent(LoginActivity.this, ParentMenuActivity.class);
                                 break;
                             case LEADER:
+                                nextMenuIntent = new Intent(LoginActivity.this, AdministratorMenuActivity.class);
                                 break;
                         }
                         if(nextMenuIntent != null){
