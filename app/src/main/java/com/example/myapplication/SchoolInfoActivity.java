@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.myComponent.MyTextView;
@@ -134,5 +135,40 @@ public class SchoolInfoActivity extends AppCompatActivity {
                 }
             });
         }
+        // 给‘更多’按钮绑定点击事件，跳转到更多信息界面, type=0：更多通知，type=1：更多公告，type=2：更多新闻
+        Button moreNotice = (Button) findViewById(R.id.moreNotice);
+        Button moreAnnounce = (Button) findViewById(R.id.moreAnnounce);
+        Button moreNews = (Button) findViewById(R.id.moreNews);
+
+        moreNotice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SchoolInfoActivity.this, MoreInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", 0);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        moreAnnounce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SchoolInfoActivity.this, MoreInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", 1);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        moreNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SchoolInfoActivity.this, MoreInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("type", 2);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 }

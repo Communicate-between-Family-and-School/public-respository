@@ -55,8 +55,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -68,8 +69,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -81,8 +83,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -94,8 +97,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -107,8 +111,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
         </LinearLayout>
@@ -156,8 +161,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -169,8 +175,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -182,8 +189,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -195,8 +203,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -208,8 +217,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
         </LinearLayout>
 
@@ -256,8 +266,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -269,8 +280,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -282,8 +294,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -295,8 +308,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
 
             <com.example.myComponent.MyTextView
@@ -308,8 +322,9 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/text_color"
+                android:textColor="@color/orange"
                 android:clickable="true"
+                android:background="@drawable/underline_text"
                 android:text="" />
         </LinearLayout>
     </LinearLayout>

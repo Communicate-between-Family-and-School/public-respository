@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.myComponent.MyTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notice_2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|left"
+    android:textSize="20dp"
+    android:ellipsize="end"
+    android:lines="1"
+    android:textColor="@color/orange"
+    android:clickable="true"
+    android:background="@drawable/underline_text"
+    android:text=""
+    tools:ignore="MissingConstraints" />
