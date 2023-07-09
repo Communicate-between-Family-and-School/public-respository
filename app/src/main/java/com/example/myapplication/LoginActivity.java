@@ -30,9 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     Button login_btn,register_btn;//登录按钮，注册按钮
 
     private static final String Tag = "LoginActivity";
-    private long account_text = -1;
-    private String password_text = "";
-    private IDENTITY identity = new IDENTITY(NO_IDENTITY);
+    private static String account_text = "",password_text = "";
+    private static IDENTITY identity = new IDENTITY(NO_IDENTITY);
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -66,24 +65,22 @@ public class LoginActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        account_text = Integer.parseInt(account.getText().toString());
-                        Log.d(Tag, account.getText().toString());
+                        account_text = account.getText().toString();
                         password_text = password.getText().toString();
-                        Log.d(Tag, password_text);
                         Message message = new Message();
 
                         String sql = "SELECT r.rname " +
                                 "FROM users u " +
                                 "JOIN user_role ur ON u.uid = ur.uid " +
                                 "JOIN role r ON ur.rid = r.rid " +
-                                "WHERE u.uid=? " +
-                                "AND u.password=?;";
+                                "WHERE u.uid = ? " +
+                                "AND u.password = ?;";
                         Connection connection = null;
                         try {
                             connection = DBUtils.getConnection();
                             PreparedStatement ps = connection.prepareStatement(sql);
                             if (ps != null) {
-                                ps.setLong(1, account_text);
+                                ps.setString(1, account_text);
                                 ps.setString(2, password_text);
                                 ResultSet rs = DBUtils.Query(ps,connection);
                                 if (rs != null) {
@@ -94,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                                             case "parent":identity.setIdentity(PARENT);break;
                                             case "leader":identity.setIdentity(LEADER);break;
                                         }
-                                    }else {
-                                        identity.setIdentity(NO_IDENTITY);
                                     }
                                     ps.close();
                                 }
@@ -117,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
                                 nextMenuIntent = new Intent(LoginActivity.this, TeacherMenuActivity.class);
                                 break;
                             case PARENT:
-
                                 break;
                             case LEADER:
                                 break;

@@ -7,18 +7,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myComponent.MyTextView;
 import com.example.mySpecialConversion.CustomTextWatcher;
 import com.example.mySpecialConversion.ParagraphsIndented;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.transform.Result;
 
 public class commute extends AppCompatActivity {
     TextView attendance;/*考勤情况*/
@@ -31,6 +43,7 @@ public class commute extends AppCompatActivity {
     EditText receive;/*收件人id*/
     EditText conversation;/*信息内容*/
 
+    LinearLayout message_all;//收到信息
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
@@ -42,6 +55,17 @@ public class commute extends AppCompatActivity {
                 case 2:
                     Toast.makeText(commute.this,"发送成功",Toast.LENGTH_SHORT).show();
                     break;
+                case 3:
+                    LinearLayout linearLayout = findViewById(R.id.linearLayout);
+                    List<Map<String, String>> resultSet = (List<Map<String, String>>) msg.obj;
+
+                    for (Map<String, String> row : resultSet) {
+                        int mid = Integer.parseInt(row.get("mid"));
+                        int read = Integer.parseInt(row.get("read"));
+                        String sender = row.get("uname");
+                    }
+                    break;
+                case 4:
             }
         }
     };
@@ -53,7 +77,6 @@ public class commute extends AppCompatActivity {
 
         Intent intent = getIntent();
         final long[] account_id = {intent.getLongExtra("account_id", 0)};
-        //account_id[0] = 1;
 
         attendance = findViewById(R.id.attend);/*显示学生考勤情况  .setText()*/
 
@@ -115,18 +138,66 @@ public class commute extends AppCompatActivity {
             }
         });
 
-        answer = findViewById(R.id.answer);/*显示数据库中的回复信息：answer.setText()*/
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        Button btn = findViewById(R.id.button20);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String sql = "SELECT * FROM `receive` r WHERE r.to = ?";
 
-        comments = findViewById(R.id.comments);/*根据数据库内容设置评价文本：comments.setText()*/
+                        Connection connection = null;
+                        try {
+                            // 建立数据库连接
+                            connection = DBUtils.getConnection();
 
-        record = findViewById(R.id.record);/*根据数据库内容设置奖惩记录文本：record.setText()*/
+                            // 查询数据库获取信息数据
+                            PreparedStatement ps = connection.prepareStatement(sql);
+                            ps.setLong(1,account_id[0]);
+
+                            if(ps != null) {
+                                ResultSet new_resultSet = DBUtils.Query(ps, connection);
+                                List<Map<String, String>> rowList = new ArrayList<>();
+                                try {
+                                    ResultSetMetaData metaData = new_resultSet.getMetaData();
+                                    int columnCount = metaData.getColumnCount();
+
+                                    while (new_resultSet.next()) {
+                                        Map<String, String> rowData = new HashMap<>();
+                                        for (int i = 1; i <= columnCount; i++) {
+                                            String columnName = metaData.getColumnName(i);
+                                            String columnValue = new_resultSet.getString(i);
+                                            rowData.put(columnName, columnValue);
+                                        }
+                                        rowList.add(rowData);
+                                    }
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    new_resultSet.close();
+                                    ps.close();
+                                    DBUtils.CloseConnection(connection);
+                                }
+
+                                Message message = new Message();
+                                message.what = 3;
+                                message.obj = rowList;
+                                handler.sendMessage(message);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
+
 
         receive = findViewById(R.id.receive);
         //自动去掉前缀0
         receive.addTextChangedListener(new CustomTextWatcher(receive));
-
         conversation = findViewById(R.id.conversation);
     }
-
-
 }

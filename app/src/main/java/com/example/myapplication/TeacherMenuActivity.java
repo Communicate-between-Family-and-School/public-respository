@@ -23,8 +23,9 @@ public class TeacherMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actvity_teacher_menu);
 
+        //获取参数值,登录id
         Intent intent = getIntent();
-        long account_id = intent.getLongExtra("account", -1);
+        long account_id = intent.getLongExtra("account",0);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
