@@ -16,6 +16,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".MoreInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ArticleDisplayActivity"
+            android:exported="false" />
+        <activity
             android:name=".search"
             android:exported="false" />
         <activity
@@ -23,9 +29,6 @@
             android:exported="false" />
         <activity
             android:name=".Usermanage"
-            android:exported="false" />
-        <activity
-            android:name=".PortalActivity"
             android:exported="false" />
         <activity
             android:name=".communicate"
@@ -73,11 +76,13 @@
             android:name=".registerActivity"
             android:exported="false" />
         <activity
-
             android:name=".AdministratorMenuActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_portal"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication" />
+        <activity
+            android:name=".PortalActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
