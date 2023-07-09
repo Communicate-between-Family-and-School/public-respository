@@ -35,7 +35,7 @@
                 android:layout_weight="6"
                 android:background="@color/skyblue"
                 android:gravity="center"
-                android:text="家校通（家长端）"
+                android:text="家校通"
                 android:textSize="30dp" />
         </LinearLayout>
         <GridLayout

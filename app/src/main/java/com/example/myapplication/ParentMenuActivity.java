@@ -6,8 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-/*学生控制界面*/
-public class StudentMenuActivity extends AppCompatActivity {
+
+public class ParentMenuActivity extends AppCompatActivity {
+
     Button back; /*返回按键*/
     Button homework;/*作业界面*/
     Button commute;/*交流界面*/
@@ -36,7 +37,7 @@ public class StudentMenuActivity extends AppCompatActivity {
         homework.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, homework.class);
+                Intent intent = new Intent(ParentMenuActivity.this, homework.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }
@@ -45,7 +46,7 @@ public class StudentMenuActivity extends AppCompatActivity {
         commute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, stu_commute.class);
+                Intent intent = new Intent(ParentMenuActivity.this, commute.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }
@@ -54,7 +55,7 @@ public class StudentMenuActivity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, infoActivity.class);
+                Intent intent = new Intent(ParentMenuActivity.this, infoActivity.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }
@@ -63,7 +64,7 @@ public class StudentMenuActivity extends AppCompatActivity {
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, StuActivity.class);
+                Intent intent = new Intent(ParentMenuActivity.this, StuActivity.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }
@@ -72,7 +73,7 @@ public class StudentMenuActivity extends AppCompatActivity {
         score.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, score.class);
+                Intent intent = new Intent(ParentMenuActivity.this, score.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }

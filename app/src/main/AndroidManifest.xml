@@ -22,6 +22,12 @@
             android:name=".ArticleDisplayActivity"
             android:exported="false" />
         <activity
+            android:name=".stu_commute"
+            android:exported="false" />
+        <activity
+            android:name=".ParentMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".search"
             android:exported="false" />
         <activity
