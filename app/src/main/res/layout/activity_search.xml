@@ -5,5 +5,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".search">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="35dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/skyblue"
+                android:gravity="top"
+                android:layout_gravity="center"
+                android:text="&lt;"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="@color/skyblue"
+                android:gravity="center"
+                android:text="信息查询"
+                android:textSize="30dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp">
+            <EditText
+                android:id="@+id/search_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text = "用户ID："
+                android:layout_weight="5"
+                android:textSize="25dp"/>
+            <Button
+                android:id="@+id/search_vertify"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="确认"
+                android:textSize="25dp"
+                android:layout_weight="2"
+                android:background="@color/darkorange"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text = "用户名:"
+                android:textSize="25sp"/>
+            <TextView
+                android:id="@+id/search_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="25sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text = "用户类型:"
+                android:textSize="25sp"/>
+            <TextView
+                android:id="@+id/search_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="25sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text = "关联班级:"
+                android:textSize="25sp"/>
+            <TextView
+                android:id="@+id/search_classnum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="无"
+                android:textSize="25sp"/>
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

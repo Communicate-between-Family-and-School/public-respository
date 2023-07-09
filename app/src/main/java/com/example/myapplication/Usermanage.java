@@ -12,13 +12,10 @@ import android.widget.TextView;
 
 public class Usermanage extends AppCompatActivity {
     Button back;/*返回按键*/
-    RadioButton insert;/*添加选项*/
-    RadioButton update;/*修改选项*/
-    RadioButton delete;/*删除选项*/
-    RadioButton student;/*学生选项*/
-    RadioButton teacher;/*教师选项*/
-    RadioButton parent;/*家长选项*/
-    RadioButton leader;/*领导选项*/
+    RadioGroup operate;/*操作组*/
+    String stroperate;/*操作标识"insert"插入，"update"修改，"delete"删除*/
+    RadioGroup role;/*角色选项*/
+    String strrole;/*角色标识*/
     EditText editid;/*用户id*/
     EditText editname;/*用户名*/
     EditText editpwd;/*密码*/
@@ -32,7 +29,25 @@ public class Usermanage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usermanage);
-
+        operate = findViewById(R.id.adm_operate);
+        operate.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i==R.id.adm_insert){editid.setEnabled(false);stroperate = "insert";}
+                if(i==R.id.adm_update){editid.setEnabled(true);stroperate = "update";}
+                if(i==R.id.adm_delete){editid.setEnabled(true);stroperate = "delete";}
+            }
+        });
+        role = findViewById(R.id.adm_role);
+        role.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i==R.id.adm_leader){classnum.setEnabled(false);strrole = "leader";}
+                if(i==R.id.adm_student){classnum.setEnabled(true);strrole = "student";}
+                if(i==R.id.adm_parent){classnum.setEnabled(true);strrole = "parent";}
+                if(i==R.id.adm_teacher){classnum.setEnabled(true);strrole = "teacher";}
+            }
+        });
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,64 +55,14 @@ public class Usermanage extends AppCompatActivity {
                 finish();
             }
         });
-        insert = findViewById(R.id.adm_insert);
-        insert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editid.setEnabled(false);
-            }
-        });
-        update = findViewById(R.id.adm_update);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editid.setEnabled(true);
-            }
-        });
-        delete = findViewById(R.id.adm_delete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editid.setEnabled(true);
-            }
-        });
-        student = findViewById(R.id.adm_student);
-        student.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                classnum.setEnabled(true);
-            }
-        });
-        teacher = findViewById(R.id.adm_teacher);
-        teacher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                classnum.setEnabled(true);
-            }
-        });
-        parent = findViewById(R.id.adm_parent);
-        parent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                classnum.setEnabled(true);
-            }
-        });
-        leader = findViewById(R.id.adm_leader);
-        leader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                classnum.setEnabled(false);
-            }
-        });
+        vertify = findViewById(R.id.adm_vertify);
         editid = findViewById(R.id.adm_editid);
         editname = findViewById(R.id.adm_editname);
         editpwd = findViewById(R.id.adm_editpwd);
         classnum = findViewById(R.id.adm_editclass);
-        vertify = findViewById(R.id.adm_vertify);
         txtid = findViewById(R.id.adm_uid);
         txtname = findViewById(R.id.adm_name);
         txtclassnum = findViewById(R.id.adm_classnum);
         txttype = findViewById(R.id.adm_type);
-
     }
 }

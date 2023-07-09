@@ -5,5 +5,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".messagepublish">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/skyblue"
+                android:gravity="top"
+                android:layout_gravity="center"
+                android:text="&lt;"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="@color/skyblue"
+                android:gravity="center"
+                android:text="信息发布"
+                android:textSize="30dp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请选择发送信息的类型"
+            android:textSize="20sp"/>
+        <RadioGroup
+            android:id = "@+id/pub_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/pub_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="教育资讯"
+                android:textSize="25dp"/>
+            <RadioButton
+                android:id="@+id/pub_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="学生活动"
+                android:textSize="25dp"/>
+        </RadioGroup>
+        <EditText
+            android:id="@+id/pub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "标题"
+            android:textSize="25dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/pub_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text = "正文内容"
+                android:lines = "18"
+                android:textSize="20sp"/>
+        </ScrollView>
+        <Button
+            android:id="@+id/pub_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:textSize="25dp"
+            android:background="@color/darkorange"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
