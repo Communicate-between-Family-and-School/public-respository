@@ -97,9 +97,6 @@ public class LoginActivity extends AppCompatActivity {
                                     }else {
                                         identity.setIdentity(NO_IDENTITY);
                                     }
-                                    else{
-                                        identity.setIdentity(NO_IDENTITY);
-                                    }
                                     ps.close();
                                 }
                             }

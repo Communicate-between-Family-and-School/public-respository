@@ -58,7 +58,7 @@
             android:name=".Educate"
             android:exported="false" />
         <activity
-            android:name=".setscore"
+            android:name=".PortalActivity"
             android:exported="false" />
         <activity
             android:name=".commute"
@@ -90,7 +90,7 @@
             android:label="@string/title_activity_portal"
             android:theme="@style/Theme.MyApplication" />
         <activity
-            android:name=".PortalActivity"
+            android:name=".setscore"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
