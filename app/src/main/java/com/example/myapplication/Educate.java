@@ -201,6 +201,15 @@ public class Educate extends AppCompatActivity {
                                 "(SELECT start FROM `term` WHERE termname = ?) AND " +
                                 "(SELECT end FROM `term` WHERE termname = ?) " +
                                 ") AS per_attend;";
+//                        String sql = "SELECT " +
+//                                "(SELECT COUNT(*) FROM attendance WHERE attend = true AND sid = ? AND time BETWEEN " +
+//                                "(SELECT start FROM term WHERE termname = ?) AND " +
+//                                "(SELECT end FROM term WHERE termname = ?)" +
+//                                ") / " +
+//                                "DATEDIFF( " +
+//                                "(SELECT end FROM term WHERE termname = ?), " +
+//                                "(SELECT start FROM term WHERE termname = ?) " +
+//                                ") AS per_attend;";
                         try{
                             Connection connection = DBUtils.getConnection();
                             PreparedStatement ps = connection.prepareStatement(sql);

@@ -10,6 +10,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,9 @@ public class MoreInfoActivity extends AppCompatActivity {
             Bundle bundle = msg.getData();
             myView.setInfoId(bundle.getInt("id"));
             myView.setText(bundle.getString("title"));
+
+            myView.setTextSize(24);
+
             int type = bundle.getInt("type");
             myView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,6 +49,11 @@ public class MoreInfoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(20, 20, 20, 20);
+            myView.setLayoutParams(params);
+
             titles.addView(myView);
         }
     };
@@ -105,6 +114,5 @@ public class MoreInfoActivity extends AppCompatActivity {
                     DBUtils.CloseConnection(connection);
             }
         }).start();
-
     }
 }
