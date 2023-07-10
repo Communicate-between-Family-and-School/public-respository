@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StuActivity">
+    tools:context=".AttendListActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="75dp">
-
+            android:layout_marginBottom="10dp">
             <Button
                 android:id="@+id/back"
                 android:layout_width="0dp"
@@ -31,12 +30,30 @@
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_weight="6"
+                android:layout_weight="4"
                 android:background="@color/skyblue"
                 android:gravity="center"
-                android:text="学生活动"
+                android:text="出勤情况"
+                android:textSize="30dp" />
+            <Button
+                android:id="@+id/refresh"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/skyblue"
+                android:gravity="center"
+                android:text=""
                 android:textSize="30dp" />
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/attendances"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

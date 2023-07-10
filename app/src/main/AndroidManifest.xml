@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".AttendListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReplyActivity"
             android:exported="false" />
         <activity
@@ -65,9 +68,6 @@
             android:exported="false" />
         <activity
             android:name=".score"
-            android:exported="false" />
-        <activity
-            android:name=".StuActivity"
             android:exported="false" />
         <activity
             android:name=".TeacherMenuActivity"

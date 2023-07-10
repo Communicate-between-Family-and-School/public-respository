@@ -69,6 +69,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(TeacherMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
+                intent.putExtra("type", 3);
                 startActivity(intent);
             }
         });
@@ -76,8 +77,9 @@ public class TeacherMenuActivity extends AppCompatActivity {
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherMenuActivity.this, StuActivity.class);
+                Intent intent = new Intent(TeacherMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
+                intent.putExtra("type", 4);
                 startActivity(intent);
             }
         });

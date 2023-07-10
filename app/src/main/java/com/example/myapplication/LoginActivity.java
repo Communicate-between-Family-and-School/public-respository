@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        account_text = Integer.parseInt(account.getText().toString());
+                        account_text = Long.parseLong(account.getText().toString());
                         Log.d(Tag, account.getText().toString());
                         password_text = password.getText().toString();
                         Log.d(Tag, password_text);

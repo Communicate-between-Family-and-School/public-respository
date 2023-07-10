@@ -77,7 +77,7 @@ public class CommunicationListActivity extends AppCompatActivity {
 
         communications = (LinearLayout)findViewById(R.id.communications);
         Intent intent = getIntent();
-        account_id = intent.getLongExtra("account_id", 0);
+        account_id = intent.getLongExtra("account_id", -1);
         //account_id[0] = 1;
 
         back = findViewById(R.id.back);
@@ -94,7 +94,7 @@ public class CommunicationListActivity extends AppCompatActivity {
                 Connection connection = null;
                 try {
                     connection = DBUtils.getConnection();
-                    String sql = "SELECT message, uname, time, m.from, mid FROM `message_record` m, users u where m.to=? and m.from=uid ORDER BY mid DESC";
+                    String sql = "SELECT message, uname, time, m.from, mid FROM `message_record` m, users u where m.to=? and m.from=uid ORDER BY time DESC";
                     PreparedStatement ps = connection.prepareStatement(sql);
                     ps.setLong(1, account_id);
                     if (ps != null) {

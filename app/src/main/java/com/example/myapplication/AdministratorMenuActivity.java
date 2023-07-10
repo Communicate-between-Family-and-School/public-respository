@@ -35,7 +35,7 @@ public class AdministratorMenuActivity extends AppCompatActivity {
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdministratorMenuActivity.this, StuActivity.class);
+                Intent intent = new Intent(AdministratorMenuActivity.this, MoreInfoActivity.class);
                 startActivity(intent);
             }
         });
