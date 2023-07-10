@@ -14,21 +14,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/*学生端，家长端查看成绩*/
-public class score extends AppCompatActivity {
+public class parent_score extends AppCompatActivity {
+
     Button back;
     Button search;
     EditText term;
     TextView score;
-    String[] sub;
-    long[] grade;
     String sql;
-    String sqlselect;
     long termid;
     String s;
     @SuppressLint("HandlerLeak")
@@ -37,13 +33,13 @@ public class score extends AppCompatActivity {
         public void handleMessage(Message msg){
             switch (msg.what){
                 case 1:
-                    Toast.makeText(score.this,"查询失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parent_score.this,"查询失败",Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
-                    Toast.makeText(score.this,"查询成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parent_score.this,"查询成功",Toast.LENGTH_SHORT).show();
                     break;
                 case 3:
-                    Toast.makeText(score.this,"关联班级获取失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parent_score.this,"关联班级获取失败",Toast.LENGTH_SHORT).show();
                 case 4:
                     Bundle bundle = msg.getData();
                     String result = bundle.getString("result");
@@ -71,7 +67,7 @@ public class score extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = getIntent();
                 final long[] account_id = {intent.getLongExtra("account_id", 0)};
-                sql = "SELECT subject,score FROM `grade` WHERE sid = ? AND termid = ?;";
+                sql = "SELECT subject, score FROM grade g, parent_stu p where p.pid=? and g.sid=p.sid and g.termid=?;";
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

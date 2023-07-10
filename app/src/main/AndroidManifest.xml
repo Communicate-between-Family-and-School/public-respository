@@ -19,6 +19,9 @@
             android:name=".AttendListActivity"
             android:exported="false" />
         <activity
+            android:name=".parent_score"
+            android:exported="false" />
+        <activity
             android:name=".ReplyActivity"
             android:exported="false" />
         <activity
