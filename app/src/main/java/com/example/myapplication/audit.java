@@ -94,8 +94,8 @@ public class audit extends AppCompatActivity {
         setContentView(R.layout.activity_audit);
 
         Intent intent = getIntent();
-        apid = intent.getLongExtra("apid",7);
-        acid = intent.getLongExtra("acid",2021080901);
+        apid = intent.getLongExtra("apid",0);
+        acid = intent.getLongExtra("acid",0);
 
         audit_id = findViewById(R.id.audit_pid);
         audit_pname = findViewById(R.id.audit_pname);

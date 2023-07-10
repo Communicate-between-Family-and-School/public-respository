@@ -193,11 +193,11 @@ public class Educate extends AppCompatActivity {
                     @Override
                     public void run() {
                         String sql = "SELECT " +
-                                "(SELECT COUNT(*) FROM `attendance` WHERE attend = true AND time BETWEEN " +
+                                "(SELECT COUNT(*) FROM `attendance` WHERE attend = true AND sid = ? AND time BETWEEN " +
                                 "(SELECT start FROM `term` WHERE termname = ?) AND " +
                                 "(SELECT end FROM `term` WHERE termname = ?) " +
                                 ") / " +
-                                "(SELECT COUNT(*) FROM `attendance` WHERE time BETWEEN " +
+                                "(SELECT COUNT(*) FROM `attendance` WHERE sid = ? AND time BETWEEN " +
                                 "(SELECT start FROM `term` WHERE termname = ?) AND " +
                                 "(SELECT end FROM `term` WHERE termname = ?) " +
                                 ") AS per_attend;";
@@ -205,10 +205,12 @@ public class Educate extends AppCompatActivity {
                             Connection connection = DBUtils.getConnection();
                             PreparedStatement ps = connection.prepareStatement(sql);
                             if(ps != null){
-                                ps.setString(1,Sterm_name);
+                                ps.setLong(1,stu_id);
                                 ps.setString(2,Sterm_name);
                                 ps.setString(3,Sterm_name);
-                                ps.setString(4,Sterm_name);
+                                ps.setLong(4,stu_id);
+                                ps.setString(5,Sterm_name);
+                                ps.setString(6,Sterm_name);
 
                                 ResultSet resultSet = DBUtils.Query(ps,connection);
 
