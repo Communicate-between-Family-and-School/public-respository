@@ -45,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
                 case 2:
                     Toast.makeText(LoginActivity.this, "error:账号或者密码错误\n请检查账号、密码以及登录身份。", Toast.LENGTH_SHORT).show();
                     break;
+                case 3:
+                    Toast.makeText(LoginActivity.this, "error:账号或者密码不能为空", Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
     };
@@ -63,78 +66,84 @@ public class LoginActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        account_text = Long.parseLong(account.getText().toString());
-                        Log.d(Tag, account.getText().toString());
-                        password_text = password.getText().toString();
-                        Log.d(Tag, password_text);
-                        Message message = new Message();
+                if(account.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+                    Message message = new Message();
+                    message.what = 3;
+                    handler.sendMessage(message);
+                }else{
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            account_text = Long.parseLong(account.getText().toString());
+                            Log.d(Tag, account.getText().toString());
+                            password_text = password.getText().toString();
+                            Log.d(Tag, password_text);
+                            Message message = new Message();
 
-                        String sql = "SELECT r.rname " +
-                                "FROM users u " +
-                                "JOIN user_role ur ON u.uid = ur.uid " +
-                                "JOIN role r ON ur.rid = r.rid " +
-                                "WHERE u.uid = ? " +
-                                "AND u.password = ?;";
-                        Connection connection = null;
-                        try {
-                            connection = DBUtils.getConnection();
-                            PreparedStatement ps = connection.prepareStatement(sql);
-                            if (ps != null) {
-                                ps.setLong(1, account_text);
-                                ps.setString(2, password_text);
-                                ResultSet rs = DBUtils.Query(ps,connection);
-                                if (rs != null) {
-                                    if (rs.last()) {
-                                        switch(rs.getString("rname")){
-                                            case "student":identity.setIdentity(STUDENT);break;
-                                            case "teacher":identity.setIdentity(TEACHER);break;
-                                            case "parent":identity.setIdentity(PARENT);break;
-                                            case "leader":identity.setIdentity(LEADER);break;
+                            String sql = "SELECT r.rname " +
+                                    "FROM users u " +
+                                    "JOIN user_role ur ON u.uid = ur.uid " +
+                                    "JOIN role r ON ur.rid = r.rid " +
+                                    "WHERE u.uid = ? " +
+                                    "AND u.password = ?;";
+                            Connection connection = null;
+                            try {
+                                connection = DBUtils.getConnection();
+                                PreparedStatement ps = connection.prepareStatement(sql);
+                                if (ps != null) {
+                                    ps.setLong(1, account_text);
+                                    ps.setString(2, password_text);
+                                    ResultSet rs = DBUtils.Query(ps,connection);
+                                    if (rs != null) {
+                                        if (rs.last()) {
+                                            switch(rs.getString("rname")){
+                                                case "student":identity.setIdentity(STUDENT);break;
+                                                case "teacher":identity.setIdentity(TEACHER);break;
+                                                case "parent":identity.setIdentity(PARENT);break;
+                                                case "leader":identity.setIdentity(LEADER);break;
+                                            }
+                                        }else {
+                                            identity.setIdentity(NO_IDENTITY);
                                         }
-                                    }else {
-                                        identity.setIdentity(NO_IDENTITY);
+                                        ps.close();
                                     }
-                                    ps.close();
                                 }
+                                DBUtils.CloseConnection(connection);
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                                Log.e("DBUtils", "异常：" + e.getMessage());
+                            } finally {
+                                DBUtils.CloseConnection(connection);
                             }
-                            DBUtils.CloseConnection(connection);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                            Log.e("DBUtils", "异常：" + e.getMessage());
-                        } finally {
-                            DBUtils.CloseConnection(connection);
-                        }
 
-                        Intent nextMenuIntent = null;
-                        switch(identity.getCurrentIdentity()){
-                            case STUDENT:
-                                nextMenuIntent = new Intent(LoginActivity.this, StudentMenuActivity.class);
-                                break;
-                            case TEACHER:
-                                nextMenuIntent = new Intent(LoginActivity.this, TeacherMenuActivity.class);
-                                break;
-                            case PARENT:
-                                nextMenuIntent = new Intent(LoginActivity.this, ParentMenuActivity.class);
-                                break;
-                            case LEADER:
-                                nextMenuIntent = new Intent(LoginActivity.this, AdministratorMenuActivity.class);
-                                break;
-                        }
-                        if(nextMenuIntent != null){
-                            nextMenuIntent.putExtra("account",account_text);
-                            startActivity(nextMenuIntent);
-                            message.what = 1;
-                            handler.sendMessage(message);
+                            Intent nextMenuIntent = null;
+                            switch(identity.getCurrentIdentity()){
+                                case STUDENT:
+                                    nextMenuIntent = new Intent(LoginActivity.this, StudentMenuActivity.class);
+                                    break;
+                                case TEACHER:
+                                    nextMenuIntent = new Intent(LoginActivity.this, TeacherMenuActivity.class);
+                                    break;
+                                case PARENT:
+                                    nextMenuIntent = new Intent(LoginActivity.this, ParentMenuActivity.class);
+                                    break;
+                                case LEADER:
+                                    nextMenuIntent = new Intent(LoginActivity.this, AdministratorMenuActivity.class);
+                                    break;
+                            }
+                            if(nextMenuIntent != null){
+                                nextMenuIntent.putExtra("account",account_text);
+                                startActivity(nextMenuIntent);
+                                message.what = 1;
+                                handler.sendMessage(message);
 //                            finish(); // 结束当前登录界面，防止返回到登录界面
-                        }else{
-                            message.what = 2;
-                            handler.sendMessage(message);
+                            }else{
+                                message.what = 2;
+                                handler.sendMessage(message);
+                            }
                         }
-                    }
-                }).start();
+                    }).start();
+                }
             }
         });
 

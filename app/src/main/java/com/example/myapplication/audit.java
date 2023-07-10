@@ -208,10 +208,11 @@ public class audit extends AppCompatActivity {
                         Intent new_intent = null;
 
                         try {
-                            String sql = "select * from `apply_register` where apid != ?";
+                            String sql = "select * from `apply_register` where apid != ? AND acid = ?";
                             Connection connection = DBUtils.getConnection();
                             PreparedStatement ps = connection.prepareStatement(sql);
                             ps.setLong(1,apid);
+                            ps.setLong(2,acid);
 
                             ResultSet resultSet = DBUtils.Query(ps,connection);
 

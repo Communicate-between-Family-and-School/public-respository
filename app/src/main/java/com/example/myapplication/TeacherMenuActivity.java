@@ -2,10 +2,22 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 /*教师菜单界面*/
 public class TeacherMenuActivity extends AppCompatActivity {
@@ -17,6 +29,18 @@ public class TeacherMenuActivity extends AppCompatActivity {
     Button activity;/*学生活动界面*/
     Button score;/*成绩界面*/
     Button audit;/*审核家长申请界面*/
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 2:
+                    Toast.makeText(TeacherMenuActivity.this,"当前没有申请需要审核",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,9 +121,54 @@ public class TeacherMenuActivity extends AppCompatActivity {
         audit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherMenuActivity.this,com.example.myapplication.audit.class);
-                intent.putExtra("account_id",account_id);
-                startActivity(intent);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Message message = new Message();
+                        message.what = 1;
+
+                        Intent new_intent = null;
+
+                        try {
+                            String sql = "SELECT apid ,acid FROM `apply_register` ar " +
+                                    "LEFT JOIN `user_class` uc ON ar.acid = uc.cid AND uid = ?";
+                            Connection connection = DBUtils.getConnection();
+                            PreparedStatement ps = connection.prepareStatement(sql);
+                            ps.setLong(1,account_id);
+
+                            ResultSet resultSet = DBUtils.Query(ps,connection);
+
+                            int rowCount = 0;
+                            if(resultSet.last()){
+                                rowCount = resultSet.getRow();
+                            };
+                            resultSet.beforeFirst();
+
+                            if(rowCount == 0){
+                                message.what = 2;
+                            }else{
+                                if(resultSet.next()){
+                                    long apid = resultSet.getLong("apid");
+                                    long acid = resultSet.getLong("acid");
+
+
+                                    new_intent = new Intent(TeacherMenuActivity.this,audit.class);
+                                    new_intent.putExtra("apid",apid);
+                                    new_intent.putExtra("acid",acid);
+                                    handler.sendMessage(message);
+                                    startActivity(new_intent);
+                                }
+                            }
+                            DBUtils.CloseConnection(connection);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            Log.e("DBUtils", "异常：" + e.getMessage());
+                        }
+                        if(message.what == 2)
+                            handler.sendMessage(message);
+                    }
+                }).start();
             }
         });
     }
