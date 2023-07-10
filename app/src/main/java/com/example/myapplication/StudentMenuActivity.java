@@ -44,7 +44,7 @@ public class StudentMenuActivity extends AppCompatActivity {
         commute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentMenuActivity.this, commute.class);
+                Intent intent = new Intent(StudentMenuActivity.this, stu_commute.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }

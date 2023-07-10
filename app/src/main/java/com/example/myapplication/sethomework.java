@@ -30,6 +30,8 @@ public class sethomework extends AppCompatActivity {
     String sub;/*学科信息*/
     String sql;/*sql命令*/
     EditText ddl;/*截止日期*/
+    long cid;
+    int signal;
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
@@ -40,6 +42,9 @@ public class sethomework extends AppCompatActivity {
                     break;
                 case 2:
                     Toast.makeText(sethomework.this,"发布成功",Toast.LENGTH_SHORT).show();
+                    break;
+                case 3:
+                    Toast.makeText(sethomework.this,"，发布失败，请检查输入班级号",Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -81,8 +86,8 @@ public class sethomework extends AppCompatActivity {
             public void onClick(View view) {
                 String content = homework.getText().toString();
                 String classid = classnum.getText().toString();
-                int cid = Integer.parseInt(classid);
                 String deadline = ddl.getText().toString();
+
                 if(sub=="语文") sql = "INSERT INTO `homework` VALUES ( ? , DEFAULT , ?,'','', ? , ? );";
                 if(sub=="数学") sql = "INSERT INTO `homework` VALUES ( ? , DEFAULT ,'', ? ,'', ? ,? );";
                 if(sub=="英语") sql = "INSERT INTO `homework` VALUES ( ? , DEFAULT ,'','', ? , ?, ? );";
@@ -91,16 +96,24 @@ public class sethomework extends AppCompatActivity {
                     public void run() {
                         Message message = new Message();
                         message.what = 1;
+                        try{
+                            Integer.parseInt(classid);
+                            signal = 1;
+                        }catch(Exception e){
+                            signal = 0;message.what = 3;
+                        }
                         try {
-                            if(content!=null && classid!=null){
+                            if(signal !=0 ){
+                                cid =Integer.parseInt(classid);
                                 Connection connection = DBUtils.getConnection();
                                 PreparedStatement ps = connection.prepareStatement(sql);
                                 if (ps != null) {
-                                    ps.setInt(1, cid);
+                                    ps.setLong(1, cid);
                                     ps.setString(2,content);
                                     Date date = new Date(System.currentTimeMillis());
                                     ps.setDate(3,date);
                                     ps.setString(4,deadline);
+
                                     int rowCount = DBUtils.Execute(ps,connection);
                                     if(rowCount == 1){
                                         message.what= 2;
