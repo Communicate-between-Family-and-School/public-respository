@@ -26,6 +26,7 @@ public class CommunicationListActivity extends AppCompatActivity {
     Button back;
     Button refresh;/*刷新按钮*/
     LinearLayout communications;
+    long account_id;
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
@@ -40,23 +41,26 @@ public class CommunicationListActivity extends AppCompatActivity {
             TextView time = (TextView) layout2.getChildAt(0);
             Button detail_btn = (Button) layout3.getChildAt(0);
             Bundle bundle = msg.getData();
-            int from = bundle.getInt("from");
-            text.setInfoId(from);
+            long from = bundle.getLong("from");
+            text.setInfoId((int) from);
             String message = bundle.getString("message");
             text.setText(message);
             String name = bundle.getString("sender_name");
             sender_name.setText(name);
             String date = bundle.getString("time");
             time.setText(date);
+            int mid = bundle.getInt("mid");
             detail_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(CommunicationListActivity.this, CommunicationDetailActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putInt("from", from);
+                    bundle.putLong("from", from);
                     bundle.putString("message", message);
                     bundle.putString("sender_name", name);
                     bundle.putString("time", date);
+                    bundle.putInt("mid", mid);
+                    bundle.putLong("account_id", account_id);
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -73,8 +77,7 @@ public class CommunicationListActivity extends AppCompatActivity {
 
         communications = (LinearLayout)findViewById(R.id.communications);
         Intent intent = getIntent();
-        long account_id = intent.getLongExtra("account_id", 0);
-        Log.d("accound_id", Long.toString(account_id));
+        account_id = intent.getLongExtra("account_id", 0);
         //account_id[0] = 1;
 
         back = findViewById(R.id.back);
@@ -91,7 +94,7 @@ public class CommunicationListActivity extends AppCompatActivity {
                 Connection connection = null;
                 try {
                     connection = DBUtils.getConnection();
-                    String sql = "SELECT message, uname, time, m.from FROM `message_record` m, users u where m.to=? and m.from=uid ORDER BY mid DESC";
+                    String sql = "SELECT message, uname, time, m.from, mid FROM `message_record` m, users u where m.to=? and m.from=uid ORDER BY mid DESC";
                     PreparedStatement ps = connection.prepareStatement(sql);
                     ps.setLong(1, account_id);
                     if (ps != null) {
@@ -101,13 +104,15 @@ public class CommunicationListActivity extends AppCompatActivity {
                                 String text = rs.getString(1);
                                 String sender_name = rs.getString(2);
                                 String time = rs.getString(3);
-                                int from = rs.getInt(4);
+                                long from = rs.getLong(4);
+                                int mid = rs.getInt(5);
                                 Message message = new Message();
                                 Bundle bundle1 = new Bundle();
                                 bundle1.putString("message", text);
                                 bundle1.putString("sender_name", sender_name);
                                 bundle1.putString("time", time);
-                                bundle1.putInt("from", from);
+                                bundle1.putLong("from", from);
+                                bundle1.putInt("mid", mid);
                                 message.setData(bundle1);
                                 handler.sendMessage(message);
                             }
@@ -125,5 +130,53 @@ public class CommunicationListActivity extends AppCompatActivity {
             }
         });
         thread.start();
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communications.removeAllViews();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Connection connection = null;
+                        try {
+                            connection = DBUtils.getConnection();
+                            String sql = "SELECT message, uname, time, m.from, mid FROM `message_record` m, users u where m.to=? and m.from=uid ORDER BY mid DESC";
+                            PreparedStatement ps = connection.prepareStatement(sql);
+                            ps.setLong(1, account_id);
+                            if (ps != null) {
+                                ResultSet rs = DBUtils.Query(ps,connection);
+                                if (rs != null) {
+                                    while(rs.next()){
+                                        String text = rs.getString(1);
+                                        String sender_name = rs.getString(2);
+                                        String time = rs.getString(3);
+                                        long from = rs.getLong(4);
+                                        int mid = rs.getInt(5);
+                                        Message message = new Message();
+                                        Bundle bundle1 = new Bundle();
+                                        bundle1.putString("message", text);
+                                        bundle1.putString("sender_name", sender_name);
+                                        bundle1.putString("time", time);
+                                        bundle1.putLong("from", from);
+                                        bundle1.putInt("mid", mid);
+                                        message.setData(bundle1);
+                                        handler.sendMessage(message);
+                                    }
+                                }
+                                ps.close();
+                            }
+                            DBUtils.CloseConnection(connection);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            Log.e("DBUtils", "异常：" + e.getMessage());
+                        } finally {
+                            if (connection != null)
+                                DBUtils.CloseConnection(connection);
+                        }
+                    }
+                });
+                thread.start();
+            }
+        });
     }
 }

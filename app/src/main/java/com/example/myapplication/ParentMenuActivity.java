@@ -15,6 +15,7 @@ public class ParentMenuActivity extends AppCompatActivity {
     Button info;/*教育资讯界面*/
     Button activity;/*学生活动界面*/
     Button score;/*成绩界面*/
+    Button stu_into; /*学生信息界面*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,7 @@ public class ParentMenuActivity extends AppCompatActivity {
 
         //获取参数值,登录id
         Intent intent = getIntent();
-        String account = intent.getStringExtra("account");
-        long account_id = Long.parseLong(account);
+        long account_id = intent.getLongExtra("account", -1);
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +75,15 @@ public class ParentMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ParentMenuActivity.this, score.class);
+                intent.putExtra("account_id", account_id);
+                startActivity(intent);
+            }
+        });
+        stu_into = findViewById(R.id.stu_info);
+        stu_into.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ParentMenuActivity.this, stu_info.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }

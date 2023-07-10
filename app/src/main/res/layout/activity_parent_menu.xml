@@ -55,7 +55,7 @@
                 android:background="@color/lightskyblue">
             </Button>
             <Button
-                android:id="@+id/educate"
+                android:id="@+id/stu_info"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="1"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".commute">
+    tools:context=".stu_commute">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginBottom="10dp">
+
             <Button
                 android:id="@+id/back"
                 android:layout_width="0dp"
@@ -33,7 +34,7 @@
                 android:layout_weight="4"
                 android:background="@color/skyblue"
                 android:gravity="center"
-                android:text="老师留言"
+                android:text="学生信息"
                 android:textSize="30dp" />
             <Button
                 android:id="@+id/refresh"
@@ -45,15 +46,93 @@
                 android:text="刷新"
                 android:textSize="30dp" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id = "@+id/attend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text = "未出勤"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:layout_marginBottom="15dp"/>
+            <Button
+                android:id = "@+id/stu_attend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text = "签到"
+                android:textSize="25dp"
+                android:background="@color/darkorange"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/receive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:hint="请在此输入收件人账号"
+            android:inputType="number"
+            android:textSize="25dp"
+            tools:maxLength="18" />
+
+        <EditText
+            android:id="@+id/conversation"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="top|start"
+            android:hint="请在此编辑信息"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:scrollbars="vertical"
+            android:textSize="20dp" />
+        <Button
+            android:id="@+id/send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "发送"
+            android:textSize="25dp"
+            android:background="@color/darkorange"
+            android:layout_marginBottom="20dp"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/communications"
+            <TextView
+                android:id = "@+id/answer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:text = "收到信息"
+                android:textSize="20dp"
+                android:lines="5"
+                android:layout_marginBottom="10dp"/>
+        </ScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="教师评语"
+                android:textSize="20dp"
+                android:lines="4"
+                android:layout_marginBottom="10dp"/>
+        </ScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="奖惩记录"
+                android:textSize="20dp"
+                android:lines = "3"
+                android:layout_marginBottom="30dp"/>
         </ScrollView>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
