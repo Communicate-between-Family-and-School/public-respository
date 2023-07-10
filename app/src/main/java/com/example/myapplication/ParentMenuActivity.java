@@ -19,12 +19,12 @@ public class ParentMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_menu);
+        setContentView(R.layout.activity_parent_menu);
 
         //获取参数值,登录id
         Intent intent = getIntent();
-        long account_id = intent.getLongExtra("account", -1);
-
+        String account = intent.getStringExtra("account");
+        long account_id = Long.parseLong(account);
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +45,7 @@ public class ParentMenuActivity extends AppCompatActivity {
         commute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ParentMenuActivity.this, commute.class);
+                Intent intent = new Intent(ParentMenuActivity.this, CommunicationListActivity.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }
@@ -56,6 +56,7 @@ public class ParentMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ParentMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
+                intent.putExtra("type", 3);
                 startActivity(intent);
             }
         });
@@ -63,8 +64,9 @@ public class ParentMenuActivity extends AppCompatActivity {
         activity.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ParentMenuActivity.this, StuActivity.class);
+                Intent intent = new Intent(ParentMenuActivity.this, MoreInfoActivity.class);
                 intent.putExtra("account_id", account_id);
+                intent.putExtra("type", 4);
                 startActivity(intent);
             }
         });

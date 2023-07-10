@@ -42,7 +42,7 @@ public class AdministratorMenuActivity extends AppCompatActivity {
         communicate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdministratorMenuActivity.this,communicate.class));
+                startActivity(new Intent(AdministratorMenuActivity.this, CommunicationListActivity.class));
             }
         });
         search.setOnClickListener(new View.OnClickListener() {

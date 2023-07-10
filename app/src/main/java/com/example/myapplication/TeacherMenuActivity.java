@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 /*教师菜单界面*/
 public class TeacherMenuActivity extends AppCompatActivity {
     Button back; /*返回按键*/
@@ -58,7 +58,7 @@ public class TeacherMenuActivity extends AppCompatActivity {
         commute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherMenuActivity.this, communicate.class);
+                Intent intent = new Intent(TeacherMenuActivity.this, CommunicationListActivity.class);
                 intent.putExtra("account_id", account_id);
                 startActivity(intent);
             }

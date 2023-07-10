@@ -92,6 +92,9 @@ public class LoginActivity extends AppCompatActivity {
                                             case "leader":identity.setIdentity(LEADER);break;
                                         }
                                     }
+                                    else{
+                                        identity.setIdentity(NO_IDENTITY);
+                                    }
                                     ps.close();
                                 }
                             }
