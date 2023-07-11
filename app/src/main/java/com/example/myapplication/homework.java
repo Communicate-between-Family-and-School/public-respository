@@ -108,7 +108,7 @@ public class homework extends AppCompatActivity {
                                     String mat = rs.getString("chinese");
                                     String ddl = rs.getString("ddl");
                                     if (mat != "") {
-                                        s=s+mat+"   "+"截止日期："+ddl+"\n";
+                                        s=s+mat+"\n"+"截止日期："+ddl+"\n";
                                     }
                                     bundle1.putString("result", s);
                                     message.setData(bundle1);
@@ -164,7 +164,7 @@ public class homework extends AppCompatActivity {
                                     String mat = rs.getString("maths");
                                     String ddl = rs.getString("ddl");
                                     if (mat != "") {
-                                        s=s+mat+"   "+"截止日期："+ddl+"\n";
+                                        s=s+mat+"\n"+"截止日期："+ddl+"\n";
                                     }
                                     bundle1.putString("result", s);
                                     message.setData(bundle1);
@@ -220,7 +220,7 @@ public class homework extends AppCompatActivity {
                                     String mat = rs.getString("english");
                                     String ddl = rs.getString("ddl");
                                     if (mat != "") {
-                                        s=s+mat+"   "+"截止日期："+ddl+"\n";
+                                        s=s+mat+"\n"+"截止日期："+ddl+"\n";
                                     }
                                     bundle1.putString("result", s);
                                     message.setData(bundle1);

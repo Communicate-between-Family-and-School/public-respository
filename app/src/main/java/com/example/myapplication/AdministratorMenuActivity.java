@@ -28,7 +28,9 @@ public class AdministratorMenuActivity extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdministratorMenuActivity.this,MoreInfoActivity.class));
+                Intent intent = new Intent(AdministratorMenuActivity.this, MoreInfoActivity.class);
+                intent.putExtra("type", 3);
+                startActivity(intent);
             }
         });
         activity = findViewById(R.id.activity);
@@ -36,6 +38,7 @@ public class AdministratorMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdministratorMenuActivity.this, MoreInfoActivity.class);
+                intent.putExtra("type", 4);
                 startActivity(intent);
             }
         });
