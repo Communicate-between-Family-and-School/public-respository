@@ -20,6 +20,8 @@ import android.widget.Toast;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mySpecialConversion.CustomTextWatcher;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         account = findViewById(R.id.login_account);
+        account.addTextChangedListener(new CustomTextWatcher(account));
+
         password = findViewById(R.id.login_password);
 
         login_btn = findViewById(R.id.login_login_btn);

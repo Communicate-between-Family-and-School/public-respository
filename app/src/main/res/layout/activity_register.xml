@@ -154,8 +154,8 @@
                     android:layout_marginStart="35dp"
                     android:layout_marginTop="0dp"
                     android:layout_weight="1"
-                    android:text="请选择您孩子所在的班级"
-                    android:textSize="18sp"
+                    android:text="您孩子所在的班级"
+                    android:textSize="12sp"
                     tools:textStyle="normal" />
 
                 <Spinner

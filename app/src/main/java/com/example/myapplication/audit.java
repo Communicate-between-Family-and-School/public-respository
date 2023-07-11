@@ -151,31 +151,25 @@ public class audit extends AppCompatActivity {
                             String sql3 = "INSERT INTO `parent_stu`  VALUES(DEFAULT ,?,?)";
                             String sql4 = "DELETE FROM apply_register WHERE apid = ?";
 
-                            Connection connection1 = DBUtils.getConnection();
-                            Connection connection2 = DBUtils.getConnection();
-                            Connection connection3 = DBUtils.getConnection();
-                            Connection connection4 = DBUtils.getConnection();
+                            Connection connection = DBUtils.getConnection();
+                            PreparedStatement ps = connection.prepareStatement(sql1);
+                            ps.setLong(1,apuid);
+                            ps.setString(2,apname);
+                            ps.setString(3,appassword);
+                            int rowCount1 = DBUtils.Execute(ps,connection);
 
-                            PreparedStatement ps1 = connection1.prepareStatement(sql1);
-                            PreparedStatement ps2 = connection2.prepareStatement(sql2);
-                            PreparedStatement ps3 = connection3.prepareStatement(sql3);
-                            PreparedStatement ps4 = connection3.prepareStatement(sql4);
+                            ps = connection.prepareStatement(sql2);
+                            ps.setLong(1,apuid);
+                            int rowCount2 = DBUtils.Execute(ps,connection);
 
-                            ps1.setLong(1,apuid);
-                            ps1.setString(2,apname);
-                            ps1.setString(3,appassword);
+                            ps = connection.prepareStatement(sql3);
+                            ps.setLong(1,apuid);
+                            ps.setLong(2,asid);
+                            int rowCount3 = DBUtils.Execute(ps,connection);
 
-                            ps2.setLong(1,apuid);
-
-                            ps3.setLong(1,apuid);
-                            ps3.setLong(2,asid);
-
-                            ps4.setLong(1,apid);
-
-                            int rowCount1 = DBUtils.Execute(ps1,connection1);
-                            int rowCount2 = DBUtils.Execute(ps2,connection2);
-                            int rowCount3 = DBUtils.Execute(ps3,connection3);
-                            int rowCount4 = DBUtils.Execute(ps4,connection4);
+                            ps = connection.prepareStatement(sql4);
+                            ps.setLong(1,apid);
+                            int rowCount4 = DBUtils.Execute(ps,connection);
 
                             if(rowCount1 == 1 && rowCount2 == 1 && rowCount3 == 1 && rowCount4 == 1){
                                 message.what = 6;
@@ -183,7 +177,7 @@ public class audit extends AppCompatActivity {
 //                                finish();
                             }
 
-                            DBUtils.CloseConnection(connection1);
+                            DBUtils.CloseConnection(connection);
                         } catch (SQLException e) {
                             e.printStackTrace();
                             Log.e("DBUtils", "异常：" + e.getMessage());

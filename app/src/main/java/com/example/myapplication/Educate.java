@@ -112,12 +112,13 @@ public class Educate extends AppCompatActivity {
                                         "JOIN user_role ur ON uc.uid = ur.uid " +
                                         "JOIN role r ON r.rid = ur.rid " +
                                         "JOIN users u ON uc.uid = u.uid " +
-                                        "WHERE r.rname = 'student' " +
+                                        "WHERE r.rname = 'student' AND u.uid = ? " +
                                         "AND uc.cid IN (SELECT cid FROM user_class WHERE uid = ?)";
                                 try {
                                     Connection connection = DBUtils.getConnection();
                                     PreparedStatement ps = connection.prepareStatement(sql);
                                     ps.setLong(1,stu_id);
+                                    ps.setLong(2,account_id[0]);
                                     ResultSet resultSet = DBUtils.Query(ps, connection);
 
                                     resultSet.last();
