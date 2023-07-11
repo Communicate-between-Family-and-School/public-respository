@@ -27,6 +27,7 @@ public class homework extends AppCompatActivity {
     Button english;/*英语作业按钮*/
     String sqlselect;
     String sql;
+    String s;
 
     long cid;
     @SuppressLint("HandlerLeak")
@@ -44,9 +45,8 @@ public class homework extends AppCompatActivity {
                     Toast.makeText(homework.this,"关联班级获取失败",Toast.LENGTH_SHORT).show();
                 case 4:
                     Bundle bundle = msg.getData();
-                    String homework1 = bundle.getString("homework");
-                    String deadline = bundle.getString("ddl");
-                    homework.setText( ""+homework1 + "\n"+"截止日期："+deadline);
+                    String homework1 = bundle.getString("result");
+                    homework.setText( homework1);
             }
         }
     };
@@ -101,15 +101,17 @@ public class homework extends AppCompatActivity {
                             }
                             ResultSet rs = DBUtils.Query(ps, connection);
                             if (rs != null) {
+                                s="";
                                 while (rs.next()) {
-                                    if (rs.getString("chinese") != "") {
-                                        message.what = 4;
-                                        Bundle bundle1 = new Bundle();
-                                        bundle1.putString("homework", rs.getString("chinese"));
-                                        bundle1.putString("ddl", rs.getString("ddl"));
-                                        message.setData(bundle1);
-                                        break;
+                                    message.what = 4;
+                                    Bundle bundle1 = new Bundle();
+                                    String mat = rs.getString("chinese");
+                                    String ddl = rs.getString("ddl");
+                                    if (mat != "") {
+                                        s=s+mat+"   "+"截止日期："+ddl+"\n";
                                     }
+                                    bundle1.putString("result", s);
+                                    message.setData(bundle1);
                                 }
                             }
                         } catch (SQLException e) {
@@ -155,16 +157,17 @@ public class homework extends AppCompatActivity {
                             }
                             ResultSet rs = DBUtils.Query(ps, connection);
                             if (rs != null) {
+                                s="";
                                 while (rs.next()) {
+                                    message.what = 4;
+                                    Bundle bundle1 = new Bundle();
                                     String mat = rs.getString("maths");
+                                    String ddl = rs.getString("ddl");
                                     if (mat != "") {
-                                        message.what = 4;
-                                        Bundle bundle1 = new Bundle();
-                                        bundle1.putString("homework", mat);
-                                        bundle1.putString("ddl", rs.getString("ddl"));
-                                        message.setData(bundle1);
-                                        break;
+                                        s=s+mat+"   "+"截止日期："+ddl+"\n";
                                     }
+                                    bundle1.putString("result", s);
+                                    message.setData(bundle1);
                                 }
                             }
                         } catch (SQLException e) {
@@ -210,17 +213,17 @@ public class homework extends AppCompatActivity {
                             }
                             ResultSet rs = DBUtils.Query(ps, connection);
                             if (rs != null) {
+                                s="";
                                 while (rs.next()) {
+                                    message.what = 4;
+                                    Bundle bundle1 = new Bundle();
                                     String mat = rs.getString("english");
+                                    String ddl = rs.getString("ddl");
                                     if (mat != "") {
-                                        message.what = 4;
-                                        Bundle bundle1 = new Bundle();
-                                        mat = rs.getString("english");
-                                        bundle1.putString("homework", mat);
-                                        bundle1.putString("ddl", rs.getString("ddl"));
-                                        message.setData(bundle1);
-                                        break;
+                                        s=s+mat+"   "+"截止日期："+ddl+"\n";
                                     }
+                                    bundle1.putString("result", s);
+                                    message.setData(bundle1);
                                 }
                             }
                         } catch (SQLException e) {
