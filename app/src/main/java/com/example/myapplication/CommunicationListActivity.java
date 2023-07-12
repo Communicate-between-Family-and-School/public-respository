@@ -40,6 +40,7 @@ public class CommunicationListActivity extends AppCompatActivity {
             TextView sender_name = (TextView) layout1.getChildAt(0);
             TextView time = (TextView) layout2.getChildAt(0);
             Button detail_btn = (Button) layout3.getChildAt(0);
+            detail_btn.setTextSize(10);
             Bundle bundle = msg.getData();
             long from = bundle.getLong("from");
             text.setInfoId((int) from);
