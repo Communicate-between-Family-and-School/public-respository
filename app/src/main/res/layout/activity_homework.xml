@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homework">
+    tools:context=".homework"
+    android:background="@drawable/homework">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -73,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text = "无"
-                android:textSize="23dp"/>
+                android:textColor="@color/black"
+                android:textSize="25dp"/>
         </ScrollView>
 
     </LinearLayout>

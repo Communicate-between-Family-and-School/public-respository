@@ -23,8 +23,10 @@
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/introduction_btn"
-                android:text="学校简介" />
+                android:text="学校简介"
+                android:textSize="50dp"
+                android:textColor="@color/black"
+                android:background="@drawable/fpng"/>
         </LinearLayout>
 
         <LinearLayout
@@ -38,8 +40,10 @@
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/information_btn"
-                android:text="信息公告" />
+                android:text="信息公告"
+                android:textSize="50dp"
+                android:textColor="@color/black"
+                android:background="@drawable/spng"/>
         </LinearLayout>
 
         <LinearLayout
@@ -52,9 +56,11 @@
             <Button
                 android:id="@+id/login"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="登录" />
+                android:text="登录"
+                android:textSize="25dp"
+                android:background="@color/orange"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
